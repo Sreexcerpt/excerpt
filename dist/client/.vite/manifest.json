@@ -1,0 +1,189 @@
+{
+  "_FileSaver.min-A7TnrvRz.js": {
+    "file": "assets/FileSaver.min-A7TnrvRz.js",
+    "name": "FileSaver.min",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html"
+    ]
+  },
+  "_jszip.min-CKpXSye8.js": {
+    "file": "assets/jszip.min-CKpXSye8.js",
+    "name": "jszip.min",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html"
+    ]
+  },
+  "_verdanbold--lhQjj2i.js": {
+    "file": "assets/verdanbold--lhQjj2i.js",
+    "name": "verdanbold",
+    "imports": [
+      "index.html"
+    ],
+    "dynamicImports": [
+      "node_modules/html2canvas/dist/html2canvas.esm.js",
+      "node_modules/dompurify/dist/purify.es.mjs",
+      "node_modules/canvg/lib/index.es.js"
+    ]
+  },
+  "index.html": {
+    "file": "assets/main-C7ehKmeL.js",
+    "name": "main",
+    "src": "index.html",
+    "isEntry": true,
+    "dynamicImports": [
+      "src/Components/Carriers/Carrers.jsx",
+      "src/Pages/Reg-Login/Login.jsx",
+      "src/Pages/Reg-Login/Register.jsx",
+      "src/Pages/Invoice-Quotation/Invoice.jsx",
+      "src/Pages/Invoice-Quotation/Quotation.jsx",
+      "src/Pages/Invoice-Quotation/InvoiceDisplay.jsx",
+      "src/Pages/Certificate.jsx",
+      "src/Components/indvisit.jsx"
+    ],
+    "css": [
+      "assets/main-lxXVA8Js.css"
+    ],
+    "assets": [
+      "assets/NotoSansBold-CTHeVQvw.ttf",
+      "assets/ajax-loader-BcnMEykj.gif",
+      "assets/slick-BlzDm7g2.svg"
+    ]
+  },
+  "node_modules/canvg/lib/index.es.js": {
+    "file": "assets/index.es-D1hdWnEf.js",
+    "name": "index.es",
+    "src": "node_modules/canvg/lib/index.es.js",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_verdanbold--lhQjj2i.js"
+    ]
+  },
+  "node_modules/dompurify/dist/purify.es.mjs": {
+    "file": "assets/purify.es-CQJ0hv7W.js",
+    "name": "purify.es",
+    "src": "node_modules/dompurify/dist/purify.es.mjs",
+    "isDynamicEntry": true
+  },
+  "node_modules/html2canvas/dist/html2canvas.esm.js": {
+    "file": "assets/html2canvas.esm-B0tyYwQk.js",
+    "name": "html2canvas.esm",
+    "src": "node_modules/html2canvas/dist/html2canvas.esm.js",
+    "isDynamicEntry": true
+  },
+  "node_modules/slick-carousel/slick/ajax-loader.gif": {
+    "file": "assets/ajax-loader-BcnMEykj.gif",
+    "src": "node_modules/slick-carousel/slick/ajax-loader.gif"
+  },
+  "node_modules/slick-carousel/slick/fonts/slick.svg": {
+    "file": "assets/slick-BlzDm7g2.svg",
+    "src": "node_modules/slick-carousel/slick/fonts/slick.svg"
+  },
+  "public/NotoSansBold.ttf": {
+    "file": "assets/NotoSansBold-CTHeVQvw.ttf",
+    "src": "public/NotoSansBold.ttf"
+  },
+  "src/Components/Carriers/Carrers.jsx": {
+    "file": "assets/Carrers-B20zk4ZT.js",
+    "name": "Carrers",
+    "src": "src/Components/Carriers/Carrers.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html"
+    ],
+    "css": [
+      "assets/Carrers-B3wvgmF7.css"
+    ]
+  },
+  "src/Components/indvisit.jsx": {
+    "file": "assets/indvisit-VBLlJOpJ.js",
+    "name": "indvisit",
+    "src": "src/Components/indvisit.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html"
+    ],
+    "dynamicImports": [
+      "_jszip.min-CKpXSye8.js"
+    ]
+  },
+  "src/Pages/Certificate.jsx": {
+    "file": "assets/Certificate-AjGjhxu-.js",
+    "name": "Certificate",
+    "src": "src/Pages/Certificate.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html"
+    ],
+    "dynamicImports": [
+      "_FileSaver.min-A7TnrvRz.js"
+    ],
+    "css": [
+      "assets/Certificate-DJ9okruq.css"
+    ]
+  },
+  "src/Pages/Invoice-Quotation/Invoice.jsx": {
+    "file": "assets/Invoice-gu8ffZQ-.js",
+    "name": "Invoice",
+    "src": "src/Pages/Invoice-Quotation/Invoice.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_verdanbold--lhQjj2i.js"
+    ],
+    "css": [
+      "assets/Invoice-D72G89we.css"
+    ]
+  },
+  "src/Pages/Invoice-Quotation/InvoiceDisplay.jsx": {
+    "file": "assets/InvoiceDisplay-DGtEJCPi.js",
+    "name": "InvoiceDisplay",
+    "src": "src/Pages/Invoice-Quotation/InvoiceDisplay.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_verdanbold--lhQjj2i.js"
+    ],
+    "css": [
+      "assets/InvoiceDisplay-BCtqbfnD.css"
+    ]
+  },
+  "src/Pages/Invoice-Quotation/Quotation.jsx": {
+    "file": "assets/Quotation-t2oFA5Vd.js",
+    "name": "Quotation",
+    "src": "src/Pages/Invoice-Quotation/Quotation.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html",
+      "_verdanbold--lhQjj2i.js"
+    ]
+  },
+  "src/Pages/Reg-Login/Login.jsx": {
+    "file": "assets/Login-Cav1nnsr.js",
+    "name": "Login",
+    "src": "src/Pages/Reg-Login/Login.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html"
+    ]
+  },
+  "src/Pages/Reg-Login/Register.jsx": {
+    "file": "assets/Register-eXY__F6e.js",
+    "name": "Register",
+    "src": "src/Pages/Reg-Login/Register.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "index.html"
+    ]
+  },
+  "src/fonts/NunitoSans_7pt-Bold.ttf": {
+    "file": "assets/NunitoSans_7pt-Bold-BFSq5WLp.ttf",
+    "src": "src/fonts/NunitoSans_7pt-Bold.ttf"
+  },
+  "src/fonts/Sanchez-Regular.ttf": {
+    "file": "assets/Sanchez-Regular-nMEXet7k.ttf",
+    "src": "src/fonts/Sanchez-Regular.ttf"
+  }
+}
