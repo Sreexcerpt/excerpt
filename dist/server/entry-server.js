@@ -19491,111 +19491,111 @@ const Contact$1 = () => {
     await response.json();
   };
   return /* @__PURE__ */ jsxs("div", { children: [
-    /* @__PURE__ */ jsx("div", { style: { marginTop: "50px" } }),
+    /* @__PURE__ */ jsx("div", { style: { marginTop: "0px" } }),
     /* @__PURE__ */ jsxs("section", { id: "home__Page--technology", className: "homeOne__technology", children: [
       /* @__PURE__ */ jsx(
         "div",
         {
           style: { backgroundImage: `url(images/home1/technology-expert-form/bg.webp)` },
-          className: "technology_banner"
+          className: "technology_banner",
+          height: "auto",
+          width: "100%"
         }
       ),
-      /* @__PURE__ */ jsx("div", { className: "container", children: /* @__PURE__ */ jsxs(
+      /* @__PURE__ */ jsx("div", { className: "container", children: /* @__PURE__ */ jsx(
         "div",
         {
-          style: { backgroundImage: `url(images/home1/technology-expert-form/bg2.webp)`, height: "570px" },
+          style: { backgroundImage: `url(images/home1/technology-expert-form/bg2.webp)` },
           className: "contact_form",
-          children: [
-            /* @__PURE__ */ jsx("div", { className: "space120 " }),
-            /* @__PURE__ */ jsxs("div", { className: "row ", children: [
-              /* @__PURE__ */ jsx("div", { className: "col-lg-12 col-xl-5 ", children: /* @__PURE__ */ jsx("div", { className: "img_wrapper ", children: /* @__PURE__ */ jsx(
-                "img",
-                {
-                  src: "images/home1/technology-expert-form/1.webp ",
-                  alt: " ",
-                  className: "img-fluid ",
-                  height: 200
-                }
-              ) }) }),
-              /* @__PURE__ */ jsxs("div", { className: "col-xl-7", children: [
-                /* @__PURE__ */ jsx("div", { className: "heading-3 mb-20 ", children: "Contact Us..." }),
-                /* @__PURE__ */ jsxs("form", { onSubmit: handleSubmit, children: [
-                  /* @__PURE__ */ jsxs("div", { className: "row g-4 mb-25 ", children: [
-                    /* @__PURE__ */ jsx("div", { className: "col-sm-6 ", children: /* @__PURE__ */ jsx(
-                      "input",
-                      {
-                        type: "text",
-                        name: "name",
-                        pattern: "[a-zA-Z\\s]+",
-                        id: "name",
-                        value: info.name,
-                        onChange: handleChange,
-                        placeholder: "Your Name",
-                        required: true
-                      }
-                    ) }),
-                    /* @__PURE__ */ jsx("div", { className: "col-sm-6", children: /* @__PURE__ */ jsx(
-                      "input",
-                      {
-                        type: "email",
-                        name: "email",
-                        pattern: "[^\\s@]+@[^\\s@]+\\.[^\\s@]+",
-                        id: "email",
-                        value: info.email,
-                        onChange: handleChange,
-                        placeholder: "Email Address",
-                        required: true
-                      }
-                    ) })
-                  ] }),
-                  /* @__PURE__ */ jsxs("div", { className: "row g-4 mb-25", children: [
-                    /* @__PURE__ */ jsx("div", { className: "col-sm-6", children: /* @__PURE__ */ jsx(
-                      "input",
-                      {
-                        type: "text",
-                        name: "phone",
-                        pattern: "\\d{10}",
-                        title: "Please enter a valid phone number with an optional country code",
-                        id: "phone",
-                        value: info.phone,
-                        onChange: handleChange,
-                        placeholder: "91+",
-                        required: true
-                      }
-                    ) }),
-                    /* @__PURE__ */ jsx("div", { className: "col-sm-6", children: /* @__PURE__ */ jsx(
-                      "input",
-                      {
-                        type: "text",
-                        name: "subject",
-                        id: "subject",
-                        value: info.subject,
-                        onChange: handleChange,
-                        placeholder: "Your Subject",
-                        required: true
-                      }
-                    ) })
-                  ] }),
-                  /* @__PURE__ */ jsx(
-                    "textarea",
+          children: /* @__PURE__ */ jsxs("div", { className: "row ", children: [
+            /* @__PURE__ */ jsx("div", { className: "col-lg-12 col-xl-5 ", children: /* @__PURE__ */ jsx("div", { className: "img_wrapper ", children: /* @__PURE__ */ jsx(
+              "img",
+              {
+                src: "images/home1/technology-expert-form/1.webp ",
+                alt: " ",
+                className: "img-fluid ",
+                height: "auto",
+                width: "100%"
+              }
+            ) }) }),
+            /* @__PURE__ */ jsxs("div", { className: "col-xl-7", children: [
+              /* @__PURE__ */ jsx("div", { className: "heading-3 mb-20 ", children: "Contact Us..." }),
+              /* @__PURE__ */ jsxs("form", { onSubmit: handleSubmit, children: [
+                /* @__PURE__ */ jsxs("div", { className: "row", style: { marginTop: "9vh" }, children: [
+                  /* @__PURE__ */ jsx("div", { className: "col-sm-6 ", children: /* @__PURE__ */ jsx(
+                    "input",
                     {
-                      name: "message",
-                      id: "message",
-                      placeholder: "Your Comment",
-                      value: info.message,
-                      required: true,
-                      onChange: handleChange
+                      type: "text",
+                      name: "name",
+                      pattern: "[a-zA-Z\\s]+",
+                      id: "name",
+                      value: info.name,
+                      onChange: handleChange,
+                      placeholder: "Your Name",
+                      required: true
                     }
-                  ),
-                  /* @__PURE__ */ jsx("button", { className: "button-primary-1 mt-25 ", children: /* @__PURE__ */ jsxs("span", { children: [
-                    status,
-                    " "
-                  ] }) }),
-                  /* @__PURE__ */ jsx("div", { className: "space120 " })
-                ] })
+                  ) }),
+                  /* @__PURE__ */ jsx("div", { className: "col-sm-6", children: /* @__PURE__ */ jsx(
+                    "input",
+                    {
+                      type: "email",
+                      name: "email",
+                      pattern: "[^\\s@]+@[^\\s@]+\\.[^\\s@]+",
+                      id: "email",
+                      value: info.email,
+                      onChange: handleChange,
+                      placeholder: "Email Address",
+                      required: true
+                    }
+                  ) })
+                ] }),
+                /* @__PURE__ */ jsxs("div", { className: "row", style: { marginTop: "-1vh" }, children: [
+                  /* @__PURE__ */ jsx("div", { className: "col-sm-6", children: /* @__PURE__ */ jsx(
+                    "input",
+                    {
+                      type: "text",
+                      name: "phone",
+                      pattern: "\\d{10}",
+                      title: "Please enter a valid phone number with an optional country code",
+                      id: "phone",
+                      value: info.phone,
+                      onChange: handleChange,
+                      placeholder: "91+",
+                      required: true
+                    }
+                  ) }),
+                  /* @__PURE__ */ jsx("div", { className: "col-sm-6", children: /* @__PURE__ */ jsx(
+                    "input",
+                    {
+                      type: "text",
+                      name: "subject",
+                      id: "subject",
+                      value: info.subject,
+                      onChange: handleChange,
+                      placeholder: "Your Subject",
+                      required: true
+                    }
+                  ) })
+                ] }),
+                /* @__PURE__ */ jsx(
+                  "textarea",
+                  {
+                    name: "message",
+                    id: "message",
+                    placeholder: "Your Comment",
+                    value: info.message,
+                    required: true,
+                    onChange: handleChange
+                  }
+                ),
+                /* @__PURE__ */ jsx("button", { className: "button-primary-1 mt-25 ", children: /* @__PURE__ */ jsxs("span", { children: [
+                  status,
+                  " "
+                ] }) }),
+                /* @__PURE__ */ jsx("div", { className: "space120 " })
               ] })
             ] })
-          ]
+          ] })
         }
       ) })
     ] }),

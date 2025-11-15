@@ -1,22 +1,22 @@
 {
-  "_FileSaver.min-A7TnrvRz.js": {
-    "file": "assets/FileSaver.min-A7TnrvRz.js",
+  "_FileSaver.min-uiGkTLoa.js": {
+    "file": "assets/FileSaver.min-uiGkTLoa.js",
     "name": "FileSaver.min",
     "isDynamicEntry": true,
     "imports": [
       "index.html"
     ]
   },
-  "_jszip.min-CKpXSye8.js": {
-    "file": "assets/jszip.min-CKpXSye8.js",
+  "_jszip.min-plWYdMNV.js": {
+    "file": "assets/jszip.min-plWYdMNV.js",
     "name": "jszip.min",
     "isDynamicEntry": true,
     "imports": [
       "index.html"
     ]
   },
-  "_verdanbold--lhQjj2i.js": {
-    "file": "assets/verdanbold--lhQjj2i.js",
+  "_verdanbold-BteHjJNk.js": {
+    "file": "assets/verdanbold-BteHjJNk.js",
     "name": "verdanbold",
     "imports": [
       "index.html"
@@ -28,7 +28,7 @@
     ]
   },
   "index.html": {
-    "file": "assets/main-C7ehKmeL.js",
+    "file": "assets/main-Cg7otOmM.js",
     "name": "main",
     "src": "index.html",
     "isEntry": true,
@@ -52,13 +52,13 @@
     ]
   },
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-D1hdWnEf.js",
+    "file": "assets/index.es-DKJR4p6R.js",
     "name": "index.es",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_verdanbold--lhQjj2i.js"
+      "_verdanbold-BteHjJNk.js"
     ]
   },
   "node_modules/dompurify/dist/purify.es.mjs": {
@@ -86,7 +86,7 @@
     "src": "public/NotoSansBold.ttf"
   },
   "src/Components/Carriers/Carrers.jsx": {
-    "file": "assets/Carrers-B20zk4ZT.js",
+    "file": "assets/Carrers-CqDuGqgS.js",
     "name": "Carrers",
     "src": "src/Components/Carriers/Carrers.jsx",
     "isDynamicEntry": true,
@@ -98,7 +98,7 @@
     ]
   },
   "src/Components/indvisit.jsx": {
-    "file": "assets/indvisit-VBLlJOpJ.js",
+    "file": "assets/indvisit-Cl8uJSFH.js",
     "name": "indvisit",
     "src": "src/Components/indvisit.jsx",
     "isDynamicEntry": true,
@@ -106,11 +106,11 @@
       "index.html"
     ],
     "dynamicImports": [
-      "_jszip.min-CKpXSye8.js"
+      "_jszip.min-plWYdMNV.js"
     ]
   },
   "src/Pages/Certificate.jsx": {
-    "file": "assets/Certificate-AjGjhxu-.js",
+    "file": "assets/Certificate-D-Vtw_5k.js",
     "name": "Certificate",
     "src": "src/Pages/Certificate.jsx",
     "isDynamicEntry": true,
@@ -118,50 +118,50 @@
       "index.html"
     ],
     "dynamicImports": [
-      "_FileSaver.min-A7TnrvRz.js"
+      "_FileSaver.min-uiGkTLoa.js"
     ],
     "css": [
       "assets/Certificate-DJ9okruq.css"
     ]
   },
   "src/Pages/Invoice-Quotation/Invoice.jsx": {
-    "file": "assets/Invoice-gu8ffZQ-.js",
+    "file": "assets/Invoice-B0MZ4q9R.js",
     "name": "Invoice",
     "src": "src/Pages/Invoice-Quotation/Invoice.jsx",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_verdanbold--lhQjj2i.js"
+      "_verdanbold-BteHjJNk.js"
     ],
     "css": [
       "assets/Invoice-D72G89we.css"
     ]
   },
   "src/Pages/Invoice-Quotation/InvoiceDisplay.jsx": {
-    "file": "assets/InvoiceDisplay-DGtEJCPi.js",
+    "file": "assets/InvoiceDisplay-BzjAxVpN.js",
     "name": "InvoiceDisplay",
     "src": "src/Pages/Invoice-Quotation/InvoiceDisplay.jsx",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_verdanbold--lhQjj2i.js"
+      "_verdanbold-BteHjJNk.js"
     ],
     "css": [
       "assets/InvoiceDisplay-BCtqbfnD.css"
     ]
   },
   "src/Pages/Invoice-Quotation/Quotation.jsx": {
-    "file": "assets/Quotation-t2oFA5Vd.js",
+    "file": "assets/Quotation-DTYaFhT4.js",
     "name": "Quotation",
     "src": "src/Pages/Invoice-Quotation/Quotation.jsx",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_verdanbold--lhQjj2i.js"
+      "_verdanbold-BteHjJNk.js"
     ]
   },
   "src/Pages/Reg-Login/Login.jsx": {
-    "file": "assets/Login-Cav1nnsr.js",
+    "file": "assets/Login-BqzhfWlf.js",
     "name": "Login",
     "src": "src/Pages/Reg-Login/Login.jsx",
     "isDynamicEntry": true,
@@ -170,7 +170,7 @@
     ]
   },
   "src/Pages/Reg-Login/Register.jsx": {
-    "file": "assets/Register-eXY__F6e.js",
+    "file": "assets/Register-D42mc8Ms.js",
     "name": "Register",
     "src": "src/Pages/Reg-Login/Register.jsx",
     "isDynamicEntry": true,
