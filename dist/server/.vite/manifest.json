@@ -1,0 +1,117 @@
+{
+  "_verdanbold-B2YmcHcO.js": {
+    "file": "assets/verdanbold-B2YmcHcO.js",
+    "name": "verdanbold"
+  },
+  "src/Components/Carriers/Carrers.jsx": {
+    "file": "assets/Carrers-BBcQKMP1.js",
+    "name": "Carrers",
+    "src": "src/Components/Carriers/Carrers.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "src/entry-server.jsx"
+    ],
+    "css": [
+      "assets/Carrers-B3wvgmF7.css"
+    ]
+  },
+  "src/Components/indvisit.jsx": {
+    "file": "assets/indvisit-CgCuwJGe.js",
+    "name": "indvisit",
+    "src": "src/Components/indvisit.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "src/entry-server.jsx"
+    ]
+  },
+  "src/Pages/Certificate.jsx": {
+    "file": "assets/Certificate-DuqDvgNM.js",
+    "name": "Certificate",
+    "src": "src/Pages/Certificate.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "src/entry-server.jsx"
+    ],
+    "css": [
+      "assets/Certificate-DJ9okruq.css"
+    ]
+  },
+  "src/Pages/Invoice-Quotation/Invoice.jsx": {
+    "file": "assets/Invoice-D0lZE6ei.js",
+    "name": "Invoice",
+    "src": "src/Pages/Invoice-Quotation/Invoice.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "src/entry-server.jsx",
+      "_verdanbold-B2YmcHcO.js"
+    ],
+    "css": [
+      "assets/Invoice-D72G89we.css"
+    ]
+  },
+  "src/Pages/Invoice-Quotation/InvoiceDisplay.jsx": {
+    "file": "assets/InvoiceDisplay-CyIBm8Dp.js",
+    "name": "InvoiceDisplay",
+    "src": "src/Pages/Invoice-Quotation/InvoiceDisplay.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "_verdanbold-B2YmcHcO.js",
+      "src/entry-server.jsx"
+    ],
+    "css": [
+      "assets/InvoiceDisplay-BCtqbfnD.css"
+    ]
+  },
+  "src/Pages/Invoice-Quotation/Quotation.jsx": {
+    "file": "assets/Quotation-ZT6tkdrN.js",
+    "name": "Quotation",
+    "src": "src/Pages/Invoice-Quotation/Quotation.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "src/entry-server.jsx",
+      "_verdanbold-B2YmcHcO.js"
+    ]
+  },
+  "src/Pages/Reg-Login/Login.jsx": {
+    "file": "assets/Login-CwN6OmwS.js",
+    "name": "Login",
+    "src": "src/Pages/Reg-Login/Login.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "src/entry-server.jsx"
+    ]
+  },
+  "src/Pages/Reg-Login/Register.jsx": {
+    "file": "assets/Register-CGDx3vKa.js",
+    "name": "Register",
+    "src": "src/Pages/Reg-Login/Register.jsx",
+    "isDynamicEntry": true,
+    "imports": [
+      "src/entry-server.jsx"
+    ]
+  },
+  "src/entry-server.jsx": {
+    "file": "entry-server.js",
+    "name": "entry-server",
+    "src": "src/entry-server.jsx",
+    "isEntry": true,
+    "dynamicImports": [
+      "src/Components/Carriers/Carrers.jsx",
+      "src/Pages/Reg-Login/Login.jsx",
+      "src/Pages/Reg-Login/Register.jsx",
+      "src/Pages/Invoice-Quotation/Invoice.jsx",
+      "src/Pages/Invoice-Quotation/Quotation.jsx",
+      "src/Pages/Invoice-Quotation/InvoiceDisplay.jsx",
+      "src/Pages/Certificate.jsx",
+      "src/Components/indvisit.jsx"
+    ],
+    "css": [
+      "assets/entry-server-lxXVA8Js.css"
+    ],
+    "assets": [
+      "assets/NotoSansBold-CTHeVQvw.ttf",
+      "assets/ajax-loader-BcnMEykj.gif",
+      "assets/slick-BlzDm7g2.svg"
+    ]
+  }
+}
