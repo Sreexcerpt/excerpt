@@ -3,7 +3,7 @@ import * as React from "react";
 import React__default, { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense } from "react";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
-import { useNavigate, Link, NavLink, useLocation, Outlet, Routes, Route } from "react-router-dom";
+import { useNavigate, Link, NavLink, useLocation, Outlet, BrowserRouter, Routes, Route } from "react-router-dom";
 import PropTypes from "prop-types";
 import withSideEffect from "react-side-effect";
 import isEqual from "react-fast-compare";
@@ -1191,6 +1191,7 @@ const MobileNav = ({ isLoggedIn, onLogout }) => {
 };
 const Navbar = ({ isLoggedIn, isAdmin, onLogout }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showLogoutToast, setShowLogoutToast] = useState(false);
   const whiteLogo = "/image/excerptwww.png";
   const blackLogo = "/image/excerptbbb.png";
   const [activeSubmenu, setActiveSubmenu] = useState(null);
@@ -1199,9 +1200,8 @@ const Navbar = ({ isLoggedIn, isAdmin, onLogout }) => {
     white: whiteLogo,
     black: blackLogo,
     width: "auto",
-    height: "75px"
+    height: "90px"
   });
-  const [showLogoutToast, setShowLogoutToast] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -1209,8 +1209,8 @@ const Navbar = ({ isLoggedIn, isAdmin, onLogout }) => {
         setIsScrolled(true);
         setLogoImage({
           ...logoImage,
-          width: 150,
-          height: 70,
+          width: 200,
+          height: 90,
           marginLeft: 20
         });
       } else {
@@ -1218,7 +1218,8 @@ const Navbar = ({ isLoggedIn, isAdmin, onLogout }) => {
         setLogoImage({
           ...logoImage,
           width: 200,
-          height: 70
+          height: 90,
+          marginLeft: 20
         });
       }
     };
@@ -1237,13 +1238,14 @@ const Navbar = ({ isLoggedIn, isAdmin, onLogout }) => {
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
-  useEffect(() => {
-    if (showLogoutToast) {
-      setTimeout(() => {
-        setShowLogoutToast(false);
-      }, 3e3);
-    }
-  }, [showLogoutToast]);
+  const handleLogout = () => {
+    onLogout();
+    setShowLogoutToast(true);
+    setTimeout(() => {
+      setShowLogoutToast(false);
+      sessionStorage.setItem("isLoggedIn", "false");
+    }, 3e3);
+  };
   const handleSubmenuHover = (submenu) => {
     setActiveSubmenu(submenu);
   };
@@ -1262,43 +1264,116 @@ const Navbar = ({ isLoggedIn, isAdmin, onLogout }) => {
       setActiveSubmenu(null);
     }
   };
-  return /* @__PURE__ */ jsxs("div", { children: [
+  return /* @__PURE__ */ jsxs("div", { className: `header-wrapper ${isScrolled ? "scrolled" : ""}`, children: [
     /* @__PURE__ */ jsx("style", { children: `
-          li:hover > div { display: block !important; }
-.has-submenu:hover .level-3 { display: block !important; }
-.active-link {
-  color: #0554f2 !important;
-  font-weight: 600;
-  
-}
+        li:hover > div { display: block !important; }
+        .has-submenu:hover .level-3 { display: block !important; }
+        .active-link {
+          color: #0554f2 !important;
+          font-weight: 600;
+        }
 
-@media (max-width: 768px) {
-  .services-dropdown {
-    position: static !important;
-    box-shadow: none !important;
-    border: none !important;
-    width: 100% !important;
-    background-color: #f8f9fa !important;
-    margin-top: 10px !important;
-  }
-  
-  .web-design-submenu {
-    position: static !important;
-    box-shadow: none !important;
-    border: none !important;
-    background-color: #e9ecef !important;
-    margin-left: 20px !important;
-    margin-top: 5px !important;
-  }
-}
+        #topheader {
+          background-color: #0554f2;
+          color: white;
+          transition: all 0.3s ease;
+          position: relative;
+          z-index: 10000;
+        }
+
+        #topheader .paragraph.notification {
+          padding: 10px 0;
+        }
+
+        #topheader a {
+          color: white;
+          text-decoration: none;
+        }
+
+        #topheader a:hover {
+          color: #e0e0e0;
+        }
+
+        .header-wrapper {
+          transition: all 0.3s ease;
+          width: 100%;
+        }
+
+        .header-wrapper.scrolled {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 9999;
+          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-wrapper.scrolled #topheader {
+          background-color: #0554f2;
+          display: block !important;
+          visibility: visible !important;
+          opacity: 1 !important;
+          height: auto !important;
+        }
+
+        .header-wrapper.scrolled #navbar-1 {
+          background-color: white;
+        }
+
+        @media (max-width: 768px) {
+          .services-dropdown {
+            position: static !important;
+            box-shadow: none !important;
+            border: none !important;
+            width: 100% !important;
+            background-color: #f8f9fa !important;
+            margin-top: 10px !important;
+          }
+          
+          .web-design-submenu {
+            position: static !important;
+            box-shadow: none !important;
+            border: none !important;
+            background-color: #e9ecef !important;
+            margin-left: 20px !important;
+            margin-top: 5px !important;
+          }
+        }
       ` }),
+    /* @__PURE__ */ jsx("section", { id: "topheader", children: !isScrolled ? /* @__PURE__ */ jsx("div", { className: "nav-content", style: { marginLeft: "400px" }, children: /* @__PURE__ */ jsxs("div", { className: "paragraph notification", style: { display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 80px" }, children: [
+      /* @__PURE__ */ jsxs("span", { style: { display: "flex", gap: "30px", alignItems: "center" }, children: [
+        /* @__PURE__ */ jsxs("a", { href: "mailto:info@excerptech.com", style: { display: "flex", alignItems: "center", gap: "5px" }, children: [
+          /* @__PURE__ */ jsx("i", { className: "fa-solid fa-envelope" }),
+          /* @__PURE__ */ jsx("b", { children: "info@excerptech.com" })
+        ] }),
+        /* @__PURE__ */ jsxs(
+          "a",
+          {
+            onClick: () => window.gtag_report_conversion && window.gtag_report_conversion("tel:+916364657660"),
+            href: "tel:+916364657660",
+            style: { display: "flex", alignItems: "center", gap: "5px" },
+            children: [
+              /* @__PURE__ */ jsx("i", { className: "fa-solid fa-phone" }),
+              /* @__PURE__ */ jsx("span", { children: "+91 63646 57660" })
+            ]
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsx("span", { children: isLoggedIn ? /* @__PURE__ */ jsxs("a", { href: "#", className: "user-account", onClick: handleLogout, style: { display: "flex", alignItems: "center", gap: "5px" }, children: [
+        /* @__PURE__ */ jsx("i", { className: "fa-solid fa-sign-out" }),
+        " Logout"
+      ] }) : /* @__PURE__ */ jsxs("a", { href: "/login", className: "user-account", style: { display: "flex", alignItems: "center", gap: "5px" }, children: [
+        /* @__PURE__ */ jsx("i", { className: "fa-solid fa-user-tie" }),
+        " Login / Register"
+      ] }) })
+    ] }) }) : /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx("div", { className: "nav-content", style: { height: "30px", backgroundColor: "white" } }) }) }),
     /* @__PURE__ */ jsx("section", { id: "navbar-1", children: /* @__PURE__ */ jsx(
       "div",
       {
-        className: `nav-wrapper ${isScrolled ? "fixed-navbar" : ""}`,
+        className: `nav-wrapper `,
         style: { height: "80px" },
         children: /* @__PURE__ */ jsxs("div", { className: "d-flex align-items-center", children: [
-          /* @__PURE__ */ jsx("div", { className: `logo-wrapper ${isScrolled ? "visible" : ""}`, children: /* @__PURE__ */ jsx("div", { className: "logo", style: { marginTop: "9px" }, children: /* @__PURE__ */ jsx(NavLink, { to: "/", children: /* @__PURE__ */ jsx(
+          /* @__PURE__ */ jsx("div", { className: `logo-wrapper`, children: /* @__PURE__ */ jsx("div", { className: "logo", style: { marginTop: "-9px" }, children: /* @__PURE__ */ jsx(NavLink, { to: "/", style: { zIndex: 1e5 }, children: /* @__PURE__ */ jsx(
             "img",
             {
               className: `logo-img ${isScrolled ? "scrolled" : ""}`,
@@ -1311,7 +1386,7 @@ const Navbar = ({ isLoggedIn, isAdmin, onLogout }) => {
           /* @__PURE__ */ jsxs(
             "div",
             {
-              className: `nav-content ${isScrolled ? "scrolled-content" : ""}`,
+              className: `nav-content `,
               style: { marginLeft: "-80px" },
               children: [
                 /* @__PURE__ */ jsx("div", { className: "clip-path" }),
@@ -1338,13 +1413,7 @@ const Navbar = ({ isLoggedIn, isAdmin, onLogout }) => {
                           onMouseEnter: handleServicesMouseEnter,
                           onMouseLeave: handleServicesMouseLeave,
                           children: [
-                            /* @__PURE__ */ jsx(
-                              NavLink,
-                              {
-                                onClick: handleServicesClick,
-                                children: "SERVICES"
-                              }
-                            ),
+                            /* @__PURE__ */ jsx(NavLink, { onClick: handleServicesClick, children: "SERVICES" }),
                             /* @__PURE__ */ jsxs(
                               "div",
                               {
@@ -1395,12 +1464,7 @@ const Navbar = ({ isLoggedIn, isAdmin, onLogout }) => {
                                                 },
                                                 children: [
                                                   "Web Design & Development",
-                                                  /* @__PURE__ */ jsx(
-                                                    FaChevronRight,
-                                                    {
-                                                      style: { marginLeft: "13px" }
-                                                    }
-                                                  )
+                                                  /* @__PURE__ */ jsx(FaChevronRight, { style: { marginLeft: "13px" } })
                                                 ]
                                               }
                                             )
@@ -1474,53 +1538,6 @@ const Navbar = ({ isLoggedIn, isAdmin, onLogout }) => {
       }
     ) }),
     /* @__PURE__ */ jsx(MobileNav, { isLoggedIn, onLogout }),
-    showLogoutToast && /* @__PURE__ */ jsx("div", { className: "logout-toast", children: "Logout successful" })
-  ] });
-};
-const Topheader = ({ isLoggedIn, onLogout }) => {
-  const [showLogoutToast, setShowLogoutToast] = useState(false);
-  useEffect(() => {
-    const userLoggedIn = sessionStorage.getItem("isLoggedIn");
-    if (userLoggedIn === "true") {
-      isLoggedIn = true;
-    }
-  }, []);
-  const handleLogout = () => {
-    onLogout();
-    setShowLogoutToast(true);
-    setTimeout(() => {
-      setShowLogoutToast(false);
-      sessionStorage.setItem("isLoggedIn", "false");
-    }, 3e3);
-  };
-  return /* @__PURE__ */ jsxs("div", { children: [
-    /* @__PURE__ */ jsx("section", { id: "navbar-1", children: /* @__PURE__ */ jsx("div", { className: `nav-content`, children: /* @__PURE__ */ jsxs("div", { class: "paragraph notification", children: [
-      /* @__PURE__ */ jsxs("span", { style: { marginLeft: "80px" }, children: [
-        /* @__PURE__ */ jsxs("a", { href: "mailto:info@excerptech.com", children: [
-          /* @__PURE__ */ jsx("i", { className: "fa-solid fa-envelope" }),
-          /* @__PURE__ */ jsx("span", { style: { marginLeft: "5px" }, children: /* @__PURE__ */ jsx("b", { children: "info@excerptech.com" }) })
-        ] }),
-        /* @__PURE__ */ jsxs(
-          "a",
-          {
-            onclick: "return gtag_report_conversion('tel:+916364657660');",
-            href: "tel:+916364657660",
-            style: { marginLeft: "20px" },
-            children: [
-              /* @__PURE__ */ jsx("i", { className: "fa-solid fa-phone" }),
-              /* @__PURE__ */ jsx("span", { style: { marginLeft: "4px" }, children: "+91 63646 57660" })
-            ]
-          }
-        )
-      ] }),
-      /* @__PURE__ */ jsx("span", { style: { marginLeft: "-50px" }, children: isLoggedIn ? /* @__PURE__ */ jsxs("a", { href: "#", class: "user-account", onClick: handleLogout, children: [
-        /* @__PURE__ */ jsx("i", { class: "fa-solid fa-sign-out" }),
-        " Logout"
-      ] }) : /* @__PURE__ */ jsxs("a", { href: "/login", class: "user-account", children: [
-        /* @__PURE__ */ jsx("i", { class: "fa-solid fa-user-tie" }),
-        " Login / Register"
-      ] }) })
-    ] }) }) }),
     showLogoutToast && /* @__PURE__ */ jsx(
       "div",
       {
@@ -1532,7 +1549,8 @@ const Topheader = ({ isLoggedIn, onLogout }) => {
           backgroundColor: "rgba(0, 0, 0, 0.7)",
           color: "white",
           padding: "10px",
-          borderRadius: "5px"
+          borderRadius: "5px",
+          zIndex: 9999
         },
         children: "Logout successful"
       }
@@ -1540,124 +1558,110 @@ const Topheader = ({ isLoggedIn, onLogout }) => {
   ] });
 };
 const Footer1 = () => {
-  return /* @__PURE__ */ jsx("div", { id: "footer", style: { marginTop: "" }, children: /* @__PURE__ */ jsxs(
+  return /* @__PURE__ */ jsx("div", { id: "footer", children: /* @__PURE__ */ jsx(
     "section",
     {
       style: { backgroundImage: `url(images/footer/bg.webp), linear-gradient(0deg, #03041c, #03041c)` },
       id: "footer ",
-      children: [
-        /* @__PURE__ */ jsx("div", { class: "footer-top ", children: /* @__PURE__ */ jsx("div", { class: "container ", children: /* @__PURE__ */ jsxs("div", { class: "d-flex flex-column flex-md-row align-items-center justify-content-end ", children: [
-          /* @__PURE__ */ jsx("h2", { class: "heading-2 mr-50 " }),
-          /* @__PURE__ */ jsx(
-            "form",
-            {
-              class: "d-flex flex-column flex-md-row align-items-center ",
-              action: " ",
-              children: /* @__PURE__ */ jsx("div", { class: "" })
-            }
-          )
-        ] }) }) }),
-        /* @__PURE__ */ jsx("div", { class: "footer-body ", children: /* @__PURE__ */ jsxs("div", { class: "container responsive_ele", children: [
-          /* @__PURE__ */ jsxs("div", { class: "row g-4 ", children: [
-            /* @__PURE__ */ jsx("div", { class: "col-md-6 col-12 col-xl-4 ", children: /* @__PURE__ */ jsxs("div", { class: "about-company ", style: { marginTop: "5px", height: "375px" }, children: [
-              /* @__PURE__ */ jsx("div", { class: "logo-wrapper ", style: { height: "105px" }, children: /* @__PURE__ */ jsx("a", { href: "/", children: /* @__PURE__ */ jsx("img", { src: "/image/excerptwww.png", alt: "", height: 70, width: 500, style: { marginTop: "0px" } }) }) }),
-              /* @__PURE__ */ jsxs("div", { class: "content ", children: [
-                /* @__PURE__ */ jsx("h2", { class: "heading-3 " }),
-                /* @__PURE__ */ jsxs("div", { class: "paragraph ", children: [
-                  /* @__PURE__ */ jsx("b", { style: { color: "black" }, children: "  Excerpt Technologies Private Limited" }),
-                  /* @__PURE__ */ jsx("br", {}),
-                  " is a leading IT solutions and services company established with a specific mission of providing comprehensive, top of the line solutions."
-                ] }),
-                /* @__PURE__ */ jsx("div", { class: "socials ", children: /* @__PURE__ */ jsxs("ul", { children: [
-                  /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "https://www.facebook.com/Excerptech", target: "_blanck", children: /* @__PURE__ */ jsx("i", { class: "fa-brands fa-facebook-f " }) }) }),
-                  /* @__PURE__ */ jsx("li", { class: " ", children: /* @__PURE__ */ jsx("a", { href: "https://www.linkedin.com/company/excerptech ", target: "_blanck", children: /* @__PURE__ */ jsx("i", { class: "fa-brands fa-linkedin-in " }) }) }),
-                  /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "https://www.instagram.com/excerpt_technologies/?igsh=Z3k5OXozNDIzZHps ", target: "_blanck", children: /* @__PURE__ */ jsx("i", { class: "fa-brands fa-instagram " }) }) })
-                ] }) })
-              ] })
-            ] }) }),
-            /* @__PURE__ */ jsx("div", { class: "col-md-6 col-xl-4 ", children: /* @__PURE__ */ jsxs("div", { class: "wrapper responsive_ey", children: [
-              /* @__PURE__ */ jsx("h4", { class: "heading-4 ", children: "Quick Links" }),
-              /* @__PURE__ */ jsxs("ul", { children: [
+      children: /* @__PURE__ */ jsx("div", { class: "footer-body ", children: /* @__PURE__ */ jsxs("div", { class: "container responsive_ele", children: [
+        /* @__PURE__ */ jsxs("div", { class: "row g-4 ", children: [
+          /* @__PURE__ */ jsx("div", { class: "col-md-6 col-12 col-xl-4 ", children: /* @__PURE__ */ jsxs("div", { class: "about-company ", style: { marginTop: "5px", height: "fit-content" }, children: [
+            /* @__PURE__ */ jsx("div", { class: "logo-wrapper ", style: { height: "max-content" }, children: /* @__PURE__ */ jsx("a", { href: "/", style: { height: "max-content" }, children: /* @__PURE__ */ jsx("img", { src: "/image/excerptwww.png", alt: "", height: 100, width: 600, style: { marginTop: "10px", marginBottom: "20px", zIndex: 1 } }) }) }),
+            /* @__PURE__ */ jsxs("div", { class: "content ", children: [
+              /* @__PURE__ */ jsx("h2", { class: "heading-3 " }),
+              /* @__PURE__ */ jsxs("div", { class: "paragraph ", children: [
+                /* @__PURE__ */ jsx("b", { style: { color: "black" }, children: "  Excerpt Technologies Private Limited" }),
                 /* @__PURE__ */ jsx("br", {}),
-                /* @__PURE__ */ jsx("li", { class: " ", children: /* @__PURE__ */ jsx("a", { href: "/webdesign ", children: "Web Design & Development" }) }),
-                /* @__PURE__ */ jsx("br", {}),
-                /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/erp", children: "ERP" }) }),
-                /* @__PURE__ */ jsx("br", {}),
-                /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/lms", children: " LMS" }) }),
-                /* @__PURE__ */ jsx("br", {}),
-                /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/ecommerce ", children: "Ecommerce Solutions" }) }),
-                /* @__PURE__ */ jsx("br", {}),
-                /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/CyberSecurity", children: "Cyber Security" }) }),
-                /* @__PURE__ */ jsx("br", {}),
-                /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/DigitalMarketing ", children: "Digital Marketing" }) }),
-                /* @__PURE__ */ jsx("br", {}),
-                /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/privacy", children: /* @__PURE__ */ jsx("b", { children: "Privacy" }) }) })
-              ] })
-            ] }) }),
-            /* @__PURE__ */ jsx("div", { className: "col-md-6 col-xl-4", style: { marginLeft: "" }, children: /* @__PURE__ */ jsxs("div", { className: "wrapper", style: { marginRight: "-10px" }, children: [
-              /* @__PURE__ */ jsx("h4", { className: "heading-4", children: "Contact Us" }),
-              /* @__PURE__ */ jsxs("div", { className: "d-flex contact", children: [
-                /* @__PURE__ */ jsx(
-                  "div",
-                  {
-                    className: "icon-wrapper",
-                    onClick: () => window.location.href = "tel:+916364657660",
-                    style: { cursor: "pointer" },
-                    children: /* @__PURE__ */ jsx("span", { children: /* @__PURE__ */ jsx("i", { className: "fa-solid fa-phone" }) })
-                  }
-                ),
-                /* @__PURE__ */ jsxs("div", { className: "info", children: [
-                  /* @__PURE__ */ jsx("div", { className: "paragraph", children: /* @__PURE__ */ jsx("a", { href: "tel:+916364657660", children: "+91 63646 57660" }) }),
-                  /* @__PURE__ */ jsx("div", { className: "paragraph", children: /* @__PURE__ */ jsx("a", { href: "tel:+919900502404", children: "+91 99005 02404" }) })
-                ] })
+                " is a leading IT solutions and services company established with a specific mission of providing comprehensive, top of the line solutions."
               ] }),
-              /* @__PURE__ */ jsxs("div", { className: "d-flex contact", children: [
-                /* @__PURE__ */ jsx(
-                  "div",
-                  {
-                    className: "icon-wrapper",
-                    onClick: () => window.location.href = "mailto:info@excerptech.com",
-                    style: { cursor: "pointer" },
-                    children: /* @__PURE__ */ jsx("span", { children: /* @__PURE__ */ jsx("i", { className: "fa-solid fa-envelope" }) })
-                  }
-                ),
-                /* @__PURE__ */ jsx("div", { className: "info", children: /* @__PURE__ */ jsx("div", { style: { marginTop: "10px" }, children: /* @__PURE__ */ jsx("a", { href: "mailto:info@excerptech.com", className: "paragraph", children: "info@excerptech.com" }) }) })
-              ] }),
-              /* @__PURE__ */ jsxs("div", { className: "d-flex contact", children: [
-                /* @__PURE__ */ jsx(
-                  "div",
-                  {
-                    className: "icon-wrapper",
-                    onClick: () => window.open(
-                      "https://maps.app.goo.gl/pF2qHmpSfrtVySP3A",
-                      "_blank"
-                    ),
-                    style: { cursor: "pointer" },
-                    children: /* @__PURE__ */ jsx("span", { children: /* @__PURE__ */ jsx("i", { className: "fa-solid fa-location-dot" }) })
-                  }
-                ),
-                /* @__PURE__ */ jsx("div", { className: "info", children: /* @__PURE__ */ jsxs("div", { className: "paragraph", children: [
-                  "2nd Floor, B133/1, KSSIDC ",
-                  /* @__PURE__ */ jsx("br", {}),
-                  "ITI Estate, Whitefield Road,",
-                  /* @__PURE__ */ jsx("br", {}),
-                  "Mahadevpura Post Bangalore, ",
-                  /* @__PURE__ */ jsx("br", {}),
-                  "Karnataka-560048"
-                ] }) })
+              /* @__PURE__ */ jsx("div", { class: "socials ", children: /* @__PURE__ */ jsxs("ul", { children: [
+                /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "https://www.facebook.com/Excerptech", target: "_blanck", children: /* @__PURE__ */ jsx("i", { class: "fa-brands fa-facebook-f " }) }) }),
+                /* @__PURE__ */ jsx("li", { class: " ", children: /* @__PURE__ */ jsx("a", { href: "https://www.linkedin.com/company/excerptech ", target: "_blanck", children: /* @__PURE__ */ jsx("i", { class: "fa-brands fa-linkedin-in " }) }) }),
+                /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "https://www.instagram.com/excerpt_technologies/?igsh=Z3k5OXozNDIzZHps ", target: "_blanck", children: /* @__PURE__ */ jsx("i", { class: "fa-brands fa-instagram " }) }) })
+              ] }) })
+            ] })
+          ] }) }),
+          /* @__PURE__ */ jsx("div", { class: "col-md-6 col-xl-4 ", children: /* @__PURE__ */ jsxs("div", { class: "wrapper responsive_ey", children: [
+            /* @__PURE__ */ jsx("h4", { class: "heading-4 ", children: "Quick Links" }),
+            /* @__PURE__ */ jsxs("ul", { children: [
+              /* @__PURE__ */ jsx("br", {}),
+              /* @__PURE__ */ jsx("li", { class: " ", children: /* @__PURE__ */ jsx("a", { href: "/Staticwebsite ", children: "Web Design & Development" }) }),
+              /* @__PURE__ */ jsx("br", {}),
+              /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/erp", children: "ERP" }) }),
+              /* @__PURE__ */ jsx("br", {}),
+              /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/lms", children: " LMS" }) }),
+              /* @__PURE__ */ jsx("br", {}),
+              /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/ecommerce ", children: "Ecommerce Solutions" }) }),
+              /* @__PURE__ */ jsx("br", {}),
+              /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/CyberSecurity", children: "Cyber Security" }) }),
+              /* @__PURE__ */ jsx("br", {}),
+              /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/DigitalMarketing ", children: "Digital Marketing" }) }),
+              /* @__PURE__ */ jsx("br", {})
+            ] })
+          ] }) }),
+          /* @__PURE__ */ jsx("div", { className: "col-md-6 col-xl-4", style: { marginLeft: "" }, children: /* @__PURE__ */ jsxs("div", { className: "wrapper", style: { marginRight: "-10px" }, children: [
+            /* @__PURE__ */ jsx("h4", { className: "heading-4", children: "Contact Us" }),
+            /* @__PURE__ */ jsxs("div", { className: "d-flex contact", children: [
+              /* @__PURE__ */ jsx(
+                "div",
+                {
+                  className: "icon-wrapper",
+                  onClick: () => window.location.href = "tel:+916364657660",
+                  style: { cursor: "pointer" },
+                  children: /* @__PURE__ */ jsx("span", { children: /* @__PURE__ */ jsx("i", { className: "fa-solid fa-phone" }) })
+                }
+              ),
+              /* @__PURE__ */ jsxs("div", { className: "info", children: [
+                /* @__PURE__ */ jsx("div", { className: "paragraph", children: /* @__PURE__ */ jsx("a", { href: "tel:+916364657660", children: "+91 63646 57660" }) }),
+                /* @__PURE__ */ jsx("div", { className: "paragraph", children: /* @__PURE__ */ jsx("a", { href: "tel:+919900502404", children: "+91 99005 02404" }) })
               ] })
-            ] }) })
-          ] }),
-          /* @__PURE__ */ jsx("div", { class: "divider " }),
-          /* @__PURE__ */ jsx("div", { class: "footer-bottom ", children: /* @__PURE__ */ jsxs("div", { class: "d-flex justify-content-center justify-content-md-between align-items-center ", children: [
-            /* @__PURE__ */ jsxs("div", { class: "paragraph ", children: [
-              /* @__PURE__ */ jsx("span", { style: { textAlign: "center" }, children: "© Excerpt Technologies 2025" }),
-              /* @__PURE__ */ jsx("span", { style: { marginLeft: "5px" }, children: "All Rights Reserved." })
             ] }),
-            /* @__PURE__ */ jsx("div", { class: "infos ", children: /* @__PURE__ */ jsx("ul", { class: "d-none d-md-flex " }) })
+            /* @__PURE__ */ jsxs("div", { className: "d-flex contact", children: [
+              /* @__PURE__ */ jsx(
+                "div",
+                {
+                  className: "icon-wrapper",
+                  onClick: () => window.location.href = "mailto:info@excerptech.com",
+                  style: { cursor: "pointer" },
+                  children: /* @__PURE__ */ jsx("span", { children: /* @__PURE__ */ jsx("i", { className: "fa-solid fa-envelope" }) })
+                }
+              ),
+              /* @__PURE__ */ jsx("div", { className: "info", children: /* @__PURE__ */ jsx("div", { style: { marginTop: "10px" }, children: /* @__PURE__ */ jsx("a", { href: "mailto:info@excerptech.com", className: "paragraph", children: "info@excerptech.com" }) }) })
+            ] }),
+            /* @__PURE__ */ jsxs("div", { className: "d-flex contact", children: [
+              /* @__PURE__ */ jsx(
+                "div",
+                {
+                  className: "icon-wrapper",
+                  onClick: () => window.open(
+                    "https://maps.app.goo.gl/pF2qHmpSfrtVySP3A",
+                    "_blank"
+                  ),
+                  style: { cursor: "pointer" },
+                  children: /* @__PURE__ */ jsx("span", { children: /* @__PURE__ */ jsx("i", { className: "fa-solid fa-location-dot" }) })
+                }
+              ),
+              /* @__PURE__ */ jsx("div", { className: "info", children: /* @__PURE__ */ jsxs("div", { className: "paragraph", children: [
+                "2nd Floor, B133/1, KSSIDC ",
+                /* @__PURE__ */ jsx("br", {}),
+                "ITI Estate, Whitefield Road,",
+                /* @__PURE__ */ jsx("br", {}),
+                "Mahadevpura Post Bangalore, ",
+                /* @__PURE__ */ jsx("br", {}),
+                "Karnataka-560048"
+              ] }) })
+            ] })
           ] }) })
+        ] }),
+        /* @__PURE__ */ jsx("div", { class: "divider " }),
+        /* @__PURE__ */ jsx("div", { class: "footer-bottom ", children: /* @__PURE__ */ jsxs("div", { class: "d-flex justify-content-center justify-content-md-between align-items-center ", children: [
+          /* @__PURE__ */ jsxs("div", { class: "paragraph ", children: [
+            /* @__PURE__ */ jsx("span", { style: { textAlign: "center" }, children: "© Excerpt Technologies 2025" }),
+            /* @__PURE__ */ jsx("span", { style: { marginLeft: "5px" }, children: "All Rights Reserved." })
+          ] }),
+          /* @__PURE__ */ jsx("div", { class: "infos ", children: /* @__PURE__ */ jsx("ul", { class: "d-none d-md-flex " }) })
         ] }) })
-      ]
+      ] }) })
     }
   ) });
 };
@@ -19399,7 +19403,7 @@ function Homeabout() {
         class: "tp-about-wrap ml-20 wow fadeInLeft",
         "data-wow-duration": "1s",
         "data-wow-delay": ".4s",
-        children: /* @__PURE__ */ jsxs("div", { class: "tp-section mb-40", children: [
+        children: /* @__PURE__ */ jsxs("div", { class: "tp-section mb-25", children: [
           /* @__PURE__ */ jsxs("h1", { children: [
             /* @__PURE__ */ jsx("b", { children: "About us.." }),
             "."
@@ -19521,7 +19525,7 @@ const Contact$1 = () => {
             /* @__PURE__ */ jsxs("div", { className: "col-xl-7", children: [
               /* @__PURE__ */ jsx("div", { className: "heading-3 mb-20 ", children: "Contact Us..." }),
               /* @__PURE__ */ jsxs("form", { onSubmit: handleSubmit, children: [
-                /* @__PURE__ */ jsxs("div", { className: "row", style: { marginTop: "9vh" }, children: [
+                /* @__PURE__ */ jsxs("div", { className: "row homecon", children: [
                   /* @__PURE__ */ jsx("div", { className: "col-sm-6 ", children: /* @__PURE__ */ jsx(
                     "input",
                     {
@@ -19635,7 +19639,7 @@ const Contact$1 = () => {
 };
 function Project() {
   const navigate = useNavigate();
-  return /* @__PURE__ */ jsxs("div", { style: { marginTop: "80px" }, children: [
+  return /* @__PURE__ */ jsxs("div", { style: {}, children: [
     /* @__PURE__ */ jsx("div", { className: "space90 " }),
     /* @__PURE__ */ jsx(
       "div",
@@ -19643,7 +19647,7 @@ function Project() {
         style: { backgroundImage: `url(images/home1/exclusive-service/bg.webp)` },
         className: "ex-service-cards",
         children: /* @__PURE__ */ jsxs("div", { id: "projects", className: "home__projects", children: [
-          /* @__PURE__ */ jsx("div", { className: "container", children: /* @__PURE__ */ jsx("div", { className: "section-heading d-flex flex-column align-items-center justify-content-center", children: /* @__PURE__ */ jsx("h1", { className: "heading-2", style: { fontSize: "50px" }, children: "Our Services" }) }) }),
+          /* @__PURE__ */ jsx("div", { className: "container", children: /* @__PURE__ */ jsx("div", { className: "section-heading d-flex flex-column align-items-center justify-content-center", children: /* @__PURE__ */ jsx("h1", { className: "heading-2", children: "Our Services" }) }) }),
           /* @__PURE__ */ jsx("div", { className: "container", style: { marginTop: "20px", maxWidth: "1340px" }, children: /* @__PURE__ */ jsxs("div", { className: "project-slider row", children: [
             /* @__PURE__ */ jsx("div", { className: "col-lg-3 mb-4", children: /* @__PURE__ */ jsxs(
               "div",
@@ -22764,7 +22768,7 @@ const Portfolio$1 = () => {
     centerMode: !isMobile,
     // Disable center mode on mobile
     centerPadding: isMobile ? "0px" : "0px",
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: isMobile ? 1 : 3,
@@ -22829,10 +22833,10 @@ const Portfolio$1 = () => {
   const filteredItems = isMobile ? portfolioItems.filter((item) => !item.className.includes("hideOnMd")) : portfolioItems;
   return /* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsxs("section", { id: "projects", children: [
     /* @__PURE__ */ jsx("div", { className: "container", children: /* @__PURE__ */ jsxs("div", { className: "section-heading d-flex flex-column align-items-center justify-content-center", children: [
-      /* @__PURE__ */ jsx("div", { className: "space100" }),
-      /* @__PURE__ */ jsx("h2", { className: "heading-21 mb-20", style: { fontSize: isMobile ? "32px" : "45px" }, children: /* @__PURE__ */ jsx("b", { children: "Our Latest Projects" }) })
+      /* @__PURE__ */ jsx("div", { className: "space50" }),
+      /* @__PURE__ */ jsx("h2", { className: "", style: { fontSize: isMobile ? "26px" : "45px" }, children: /* @__PURE__ */ jsx("b", { children: "Our Latest Projects" }) })
     ] }) }),
-    /* @__PURE__ */ jsx("div", { style: { overflow: "hidden", padding: isMobile ? "0 5px" : "0" }, children: /* @__PURE__ */ jsx(Slider, { ...sliderSettings, children: filteredItems.map((item) => /* @__PURE__ */ jsx("div", { className: "portfolio-card", children: /* @__PURE__ */ jsx("a", { href: item.link, target: "_blank", rel: "noopener noreferrer", children: /* @__PURE__ */ jsxs("div", { className: "news-card position-relative", children: [
+    /* @__PURE__ */ jsx("div", { style: { overflow: "hidden", padding: isMobile ? "0 5px" : "0", marginTop: "40px" }, children: /* @__PURE__ */ jsx(Slider, { ...sliderSettings, children: filteredItems.map((item) => /* @__PURE__ */ jsx("div", { className: "portfolio-card", children: /* @__PURE__ */ jsx("a", { href: item.link, target: "_blank", rel: "noopener noreferrer", children: /* @__PURE__ */ jsxs("div", { className: "news-card position-relative", children: [
       /* @__PURE__ */ jsx("div", { className: "img-wrapper mb-30", children: /* @__PURE__ */ jsx("img", { src: item.image, alt: item.title }) }),
       /* @__PURE__ */ jsxs("div", { className: "content", children: [
         /* @__PURE__ */ jsx("h5", { className: "heading-5 mb-15", children: item.title }),
@@ -22980,7 +22984,7 @@ const ContactForm = () => {
   ] });
 };
 const Home = () => {
-  return /* @__PURE__ */ jsxs("div", { children: [
+  return /* @__PURE__ */ jsxs("div", { style: { overflow: "hidden" }, children: [
     /* @__PURE__ */ jsxs(HelmetExport, { children: [
       /* @__PURE__ */ jsx("title", { children: "EXCERPT TECHNOLOGIES PRIVATE LIMITED - Software As A Service Provider | Best Software Solution Provider" }),
       /* @__PURE__ */ jsx(
@@ -23139,9 +23143,9 @@ const Contact = () => {
     /* @__PURE__ */ jsx("section", { id: "contact", className: "container", children: /* @__PURE__ */ jsxs("div", { className: "row g-4", children: [
       /* @__PURE__ */ jsx("div", { className: "col-lg-7", children: /* @__PURE__ */ jsxs("div", { className: "contact__form", children: [
         /* @__PURE__ */ jsx("div", { className: "contact__form--header mb-20", children: "Have any Question On Mind!" }),
-        /* @__PURE__ */ jsx("div", { className: "contact__form--desc mb-25", children: "Your email address will not be published. Required fields are marked" }),
+        /* @__PURE__ */ jsx("div", { className: "contact__form--desc ", children: "Your email address will not be published. Required fields are marked" }),
         /* @__PURE__ */ jsxs("form", { onSubmit: handleSubmit, children: [
-          /* @__PURE__ */ jsxs("div", { className: "row g-4 mb-25", children: [
+          /* @__PURE__ */ jsxs("div", { className: "row g-4 mt-25", children: [
             /* @__PURE__ */ jsx("div", { className: "col-sm-6", children: /* @__PURE__ */ jsx(
               "input",
               {
@@ -23167,7 +23171,7 @@ const Contact = () => {
               }
             ) })
           ] }),
-          /* @__PURE__ */ jsxs("div", { className: "row g-4 mb-25", children: [
+          /* @__PURE__ */ jsxs("div", { className: "row g-4 ", children: [
             /* @__PURE__ */ jsx("div", { className: "col-sm-6", children: /* @__PURE__ */ jsx(
               "input",
               {
@@ -23217,7 +23221,7 @@ const Contact = () => {
           /* @__PURE__ */ jsx("button", { className: "button-primary-1 mt-25", children: /* @__PURE__ */ jsx("span", { children: status }) })
         ] })
       ] }) }),
-      /* @__PURE__ */ jsx("div", { className: "col-lg-5", children: /* @__PURE__ */ jsx("div", { className: "contact__map", children: mapIframe }) })
+      /* @__PURE__ */ jsx("div", { className: "col-lg-5 mb-40", children: /* @__PURE__ */ jsx("div", { className: "contact__map", children: mapIframe }) })
     ] }) }),
     showPopup && /* @__PURE__ */ jsx(
       "div",
@@ -23263,7 +23267,7 @@ const Portfolio = () => {
       title: "RGVK",
       category: "Static",
       type: "Tourism",
-      image: "portfolio/rgvk.webp",
+      image: "/portfolio/rgvk.webp",
       link: "https://rgvkindia.com/",
       className: "hideOnMd"
     },
@@ -23272,7 +23276,7 @@ const Portfolio = () => {
       title: "Car Captain",
       category: "E-com",
       type: "E-Commerce",
-      image: "portfolio/car.webp",
+      image: "/portfolio/car.webp",
       link: "https://carcaptain.in/",
       className: ""
     },
@@ -23281,7 +23285,7 @@ const Portfolio = () => {
       title: "DTECH",
       category: "CRM",
       type: "Civil",
-      image: "portfolio/dtech.webp",
+      image: "/portfolio/dtech.webp",
       link: "https://dtechwale.com/",
       className: "hideOnMd"
     },
@@ -23290,7 +23294,7 @@ const Portfolio = () => {
       title: "RoyalHood",
       category: "E-com",
       type: "E-Commerce",
-      image: "portfolio/royalhood.webp",
+      image: "/portfolio/royalhood.webp",
       link: "https://royalhood.in/",
       className: ""
     },
@@ -23299,16 +23303,16 @@ const Portfolio = () => {
       title: "ANANTA SAUKHYAM",
       category: "Health",
       type: "Wellness",
-      image: "portfolio/ananta.webp",
+      image: "/portfolio/ananta.webp",
       link: "https://anantasaukhyam.com/",
       className: "hideOnMd"
     },
     {
       id: 6,
-      title: "DYAVASANDRA INDUSTRIAL ESTATE ASSOCIATION",
+      title: "DIEA",
       category: "CRM",
       type: "Industrial Association",
-      image: "portfolio/diea.webp",
+      image: "/portfolio/diea.webp",
       link: "",
       className: "hideOnMd"
     },
@@ -23317,16 +23321,16 @@ const Portfolio = () => {
       title: "AUTOMET ENGINEERING",
       category: "Static",
       type: "Automobile",
-      image: "portfolio/automet.webp",
+      image: "/portfolio/automet.webp",
       link: "http://www.autometengg.com/",
       className: "hideOnMd"
     },
     {
       id: 8,
-      title: "GIFCO AUTO FILTERS INDIA",
+      title: "GIFCO AUTO FILTERS",
       category: "Static",
       type: "Automobile",
-      image: "portfolio/gifco.webp",
+      image: "/portfolio/gifco.webp",
       link: "http://gifcoindia.com/",
       className: "hideOnMd"
     },
@@ -23523,7 +23527,7 @@ const Portfolio = () => {
         children: [
           /* @__PURE__ */ jsx("div", { className: "img-wrapper mb-30", children: /* @__PURE__ */ jsx("img", { src: item.image, alt: item.title }) }),
           /* @__PURE__ */ jsxs("div", { className: "content", children: [
-            item.id === 2 || item.id === 7 || item.id === 8 || item.id === 9 || item.id === 11 || item.id === 12 || item.id === 13 ? /* @__PURE__ */ jsx("hh5", { className: "heading-5 mb-15", children: item.title }) : /* @__PURE__ */ jsx("h5", { className: "heading-5 mb-15", children: item.title }),
+            /* @__PURE__ */ jsx("h5", { className: "heading-5", children: item.title }),
             /* @__PURE__ */ jsx("div", { className: "paragraph mb-25", children: item.type })
           ] }),
           /* @__PURE__ */ jsx("div", { className: "circle-1 position-absolute" }),
@@ -23531,7 +23535,7 @@ const Portfolio = () => {
         ]
       }
     );
-    return /* @__PURE__ */ jsx("div", { className: `col-md-6 col-lg-4 ${item.className}`, children: item.link ? item.link.startsWith("http") ? /* @__PURE__ */ jsx(Link, { to: item.link, className: "link-to-external-website", target: "_blank", children: /* @__PURE__ */ jsx(CardContent, {}) }) : /* @__PURE__ */ jsx("a", { href: item.link, target: "_blank", children: /* @__PURE__ */ jsx(CardContent, {}) }) : /* @__PURE__ */ jsx("a", { href: "", children: /* @__PURE__ */ jsx(CardContent, {}) }) }, item.id);
+    return /* @__PURE__ */ jsx("div", { className: `col-md-6 col-lg-4 ${item.className}`, children: item.link ? /* @__PURE__ */ jsx("a", { href: item.link, className: "link-to-external-website", target: "_blank", rel: "noopener noreferrer", children: /* @__PURE__ */ jsx(CardContent, {}) }) : /* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsx(CardContent, {}) }) }, item.id);
   };
   const handleReadMore = () => {
     setShowAll(!showAll);
@@ -23545,88 +23549,55 @@ const Portfolio = () => {
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + sliderImages.length) % sliderImages.length);
   };
-  return /* @__PURE__ */ jsxs(Fragment, { children: [
-    /* @__PURE__ */ jsx("style", { jsx: true, children: `
-                .portfolio-slider {
+  return /* @__PURE__ */ jsxs("div", { children: [
+    /* @__PURE__ */ jsx("style", { children: `
+                .simple-slider-ram {
                     position: relative;
                     width: 100%;
+                    max-width: 100%;
                     height: 580px;
                     overflow: hidden;
                     border-radius: 15px;
                     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-                    margin-bottom: 80px;
+                    background: #e9ecef;
                 }
 
-                .slider-container {
+                .simple-slides-wrapper-ram {
                     position: relative;
                     width: 100%;
                     height: 100%;
-                    display: flex;
-                    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-                    transform: translateX(-${currentSlide * 100}%);
                 }
 
-                .slide {
-                    min-width: 100%;
-                    height: 100%;
-                    position: relative;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                }
-
-                .slide-image {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    transition: transform 0.3s ease;
-                }
-
-                .slide-overlay {
+                .simple-single-slide-ram {
                     position: absolute;
                     top: 0;
                     left: 0;
-                    right: 0;
-                    bottom: 0;
-                    background: linear-gradient(45deg, rgba(0, 17, 255, 0.8), rgba(0, 17, 255, 0.4));
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-                    color: white;
-                    text-align: center;
-                    padding: 20px;
+                    width: 100%;
+                    height: 100%;
                     opacity: 0;
-                    transition: opacity 0.3s ease;
+                    transition: opacity 0.5s ease-in-out;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: white;
                 }
 
-                .slide:hover .slide-overlay {
+                .simple-single-slide-ram.active-slide-ram {
                     opacity: 1;
+                    z-index: 1;
                 }
 
-                .slide:hover .slide-image {
-                    transform: scale(1.05);
+                .simple-slide-img-ram {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
                 }
 
-                .slide-title {
-                    font-size: 2.5rem;
-                    font-weight: bold;
-                    margin-bottom: 10px;
-                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-                }
-
-                .slide-type {
-                    font-size: 1.2rem;
-                    font-weight: 300;
-                    opacity: 0.9;
-                }
-
-                .slider-nav {
+                .simple-nav-btn-ram {
                     position: absolute;
                     top: 50%;
                     transform: translateY(-50%);
-                    background: rgba(255, 255, 255, 0.9);
+                    background: rgba(255, 255, 255, 0.95);
                     border: none;
                     border-radius: 50%;
                     width: 50px;
@@ -23635,27 +23606,28 @@ const Portfolio = () => {
                     align-items: center;
                     justify-content: center;
                     cursor: pointer;
-                    transition: all 0.3s ease;
                     z-index: 10;
-                    font-size: 20px;
-                    color: #0011ffff;
+                    font-size: 24px;
+                    color: #0011ff;
+                    font-weight: bold;
+                    transition: all 0.3s;
                 }
 
-                .slider-nav:hover {
-                    background: #0011ffff;
+                .simple-nav-btn-ram:hover {
+                    background: #0011ff;
                     color: white;
                     transform: translateY(-50%) scale(1.1);
                 }
 
-                .slider-nav.prev {
+                .simple-nav-btn-ram.left-ram {
                     left: 20px;
                 }
 
-                .slider-nav.next {
+                .simple-nav-btn-ram.right-ram {
                     right: 20px;
                 }
 
-                .slider-dots {
+                .simple-dots-wrapper-ram {
                     position: absolute;
                     bottom: 20px;
                     left: 50%;
@@ -23665,459 +23637,246 @@ const Portfolio = () => {
                     z-index: 10;
                 }
 
-                .dot {
+                .simple-dot-ram {
                     width: 12px;
                     height: 12px;
                     border-radius: 50%;
-                    background: rgba(255, 255, 255, 0.5);
+                    background: rgba(255, 255, 255, 0.6);
                     cursor: pointer;
-                    transition: all 0.3s ease;
-                    border: 2px solid transparent;
+                    transition: all 0.3s;
+                    border: 2px solid rgba(0, 17, 255, 0.3);
                 }
 
-                .dot.active {
-                    background: white;
-                    transform: scale(1.2);
-                    border-color: #0011ffff;
+                .simple-dot-ram.dot-active-ram {
+                    background: #0011ff;
+                    transform: scale(1.3);
+                    border-color: #0011ff;
                 }
 
-                .dot:hover {
-                    background: rgba(255, 255, 255, 0.8);
-                    transform: scale(1.1);
-                }
-
-                .slider-progress {
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    height: 4px;
-                    background: #0011ffff;
-                    transition: width 4s linear;
-                    z-index: 10;
-                    width: ${(currentSlide + 1) / sliderImages.length * 100}%;
-                }
-
-                /* Mobile-specific improvements */
                 @media (max-width: 768px) {
-                    .portfolio-slider {
-                        height: 280px;
+                    .simple-slider-ram {
+                        height: 300px;
                         margin-bottom: 30px;
-                        border-radius: 10px;
                     }
 
-                    .slide-title {
-                        font-size: 1.4rem;
-                        line-height: 1.2;
-                        margin-bottom: 8px;
+                    .simple-slide-img-ram {
+                        object-fit: contain;
+                        padding: 20px;
                     }
 
-                    .slide-type {
-                        font-size: 0.9rem;
+                    .simple-nav-btn-ram {
+                        width: 40px;
+                        height: 40px;
+                        font-size: 20px;
                     }
 
-                    .slider-nav {
-                        width: 35px;
-                        height: 35px;
-                        font-size: 16px;
+                    .simple-nav-btn-ram.left-ram {
+                        left: 10px;
                     }
 
-                    .slider-nav.prev {
-                        left: 8px;
+                    .simple-nav-btn-ram.right-ram {
+                        right: 10px;
                     }
 
-                    .slider-nav.next {
-                        right: 8px;
-                    }
-
-                    .slider-dots {
-                        bottom: 15px;
+                    .simple-dots-wrapper-ram {
+                        bottom: 10px;
                         gap: 8px;
                     }
 
-                    .dot {
+                    .simple-dot-ram {
                         width: 10px;
                         height: 10px;
                     }
 
-                    .slide-overlay {
-                        padding: 15px;
-                    }
-
-                    /* Tab navigation mobile styles */
-                    .portfolio-tabs {
-                        margin-top: -50px !important;
+                    .portfolio-tabs-ram {
+                        margin-top: 20px !important;
                         margin-bottom: 30px !important;
                         overflow-x: auto;
-                        padding-bottom: 10px;
+                        -webkit-overflow-scrolling: touch;
                     }
 
-                    .tab-wrapper {
-                        min-width: 10px;
-                        gap: 5px;
+                    .tab-wrapper-ram {
+                        display: flex;
+                        gap: 8px;
                         padding: 0 15px;
                     }
 
-                    .tab-btn {
-                        padding: 10px 18px ;
-                        margin: 0 3px ;
-                        font-size: 13px ;
-                        min-width: 10px ;
+                    .tab-btn-ram {
+                        padding: 10px 18px !important;
+                        font-size: 13px !important;
                         white-space: nowrap;
-                        border-radius: 20px !important;
                         flex-shrink: 0;
                     }
 
-                    /* Portfolio cards mobile optimization */
-                    .col-md-6.col-lg-4 {
-                        margin-bottom: 20px;
-                    }
-
-                    .news-card {
-                        margin-bottom: 15px;
-                    }
-
-                    .news-card .img-wrapper {
-                        margin-bottom: 20px;
-                    }
-
-                    .news-card .heading-5 {
-                        font-size: 1.1rem !important;
-                        line-height: 1.3;
-                        margin-bottom: 10px !important;
-                    }
-
-                    .news-card .paragraph {
-                        font-size: 0.9rem;
-                        margin-bottom: 15px !important;
-                    }
-
-                    /* Newsletter section mobile */
-                    .newsletter-Wrapper {
-                        padding: 30px 15px !important;
-                        text-align: center;
-                    }
-
-                    .newsletter-Wrapper .text h3 {
-                        font-size: 1.3rem !important;
-                        margin-bottom: 10px;
-                    }
-
-                    .newsletter-Wrapper .text p {
-                        font-size: 0.9rem !important;
-                        margin-bottom: 20px;
-                    }
-
-                    .email-wrapper {
-                        flex-direction: column !important;
-                        gap: 15px;
-                    }
-
-                    .email-wrapper input {
-                        width: 100% !important;
-                        margin-bottom: 10px;
-                        padding: 12px 15px;
-                        border-radius: 25px;
-                        font-size: 14px;
-                    }
-
-                    .subscribe-btn {
-                        width: 100% !important;
-                        padding: 12px 20px !important;
-                        border-radius: 25px !important;
-                        font-size: 14px !important;
-                    }
-
-                    /* Read More button mobile */
-                    .d-flex.justify-content-center.mt-50 {
-                        margin-top: 30px !important;
-                        padding: 0 15px;
-                    }
-
-                    .d-flex.justify-content-center.mt-50 button {
-                        width: 100% !important;
-                        max-width: 250px;
-                        padding: 12px 25px !important;
-                        font-size: 14px !important;
-                        border-radius: 25px !important;
-                    }
-
-                    /* Page header mobile */
-                    .sub-header .page-info h2 {
-                        font-size: 1.8rem !important;
-                        margin-bottom: 10px;
-                    }
-
-                    .sub-header .page-info h6 {
-                        font-size: 0.9rem !important;
-                    }
-
-                    .sub-header .page-info {
-                        padding: 20px 0;
-                    }
-
-                    /* Hide elements on mobile that have hideOnMd class */
                     .hideOnMd {
                         display: none !important;
                     }
                 }
 
                 @media (max-width: 480px) {
-                    .portfolio-slider {
-                        height: 220px;
-                        margin-bottom: 25px;
+                    .simple-slider-ram {
+                        height: 250px;
                     }
 
-                    .slide-title {
-                        font-size: 1.2rem;
+                    .simple-nav-btn-ram {
+                        width: 35px;
+                        height: 35px;
+                        font-size: 18px;
                     }
 
-                    .slide-type {
-                        font-size: 0.8rem;
+                    .simple-nav-btn-ram.left-ram {
+                        left: 8px;
                     }
 
-                    .tab-btn {
-                        padding: 8px 15px !important;
-                        font-size: 12px !important;
-                        min-width: 80px !important;
-                    }
-
-                    .news-card .heading-5 {
-                        font-size: 1rem !important;
-                    }
-
-                    .newsletter-Wrapper .text h3 {
-                        font-size: 1.1rem !important;
+                    .simple-nav-btn-ram.right-ram {
+                        right: 8px;
                     }
                 }
-
-                @keyframes slideIn {
-                    from {
-                        opacity: 0;
-                        transform: translateY(30px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-
-                .slide-content {
-                    animation: slideIn 0.6s ease-out;
-                }
-                    
             ` }),
-    /* @__PURE__ */ jsxs(HelmetExport, { children: [
-      /* @__PURE__ */ jsx("title", { children: "Portfolio - EXCERPT TECHNOLOGIES PRIVATE LIMITED - Software As A Service Provider | Best Software Solution Provider" }),
-      /* @__PURE__ */ jsx(
-        "meta",
-        {
-          name: "description",
-          content: "Welcome to Excerpt Technologies Private Limited. We specialize in Web Design & Development, E-commerce Solutions, Data Analytics, and BI Report Generation."
-        }
-      )
-    ] }),
-    /* @__PURE__ */ jsxs("div", { children: [
-      /* @__PURE__ */ jsx(
-        "section",
-        {
-          style: {
-            backgroundImage: "url(images/00.webp)",
-            backgroundColor: "rgb(255, 255, 255)"
-          },
-          className: "sub-header position-relative",
-          children: /* @__PURE__ */ jsx("div", { className: "container", children: /* @__PURE__ */ jsxs("div", { className: "page-info ", children: [
-            /* @__PURE__ */ jsx("h2", { className: "heading-2", style: { color: "white", textAlign: "center" }, children: "Our Portfolio" }),
-            /* @__PURE__ */ jsxs("h6", { className: "heading-6", children: [
-              /* @__PURE__ */ jsx("a", { href: "/", children: "Home" }),
-              " / ",
-              /* @__PURE__ */ jsx("a", { href: "#", children: "Portfolio" })
-            ] })
-          ] }) })
-        }
-      ),
-      /* @__PURE__ */ jsxs("section", { id: "projects", children: [
-        /* @__PURE__ */ jsxs("div", { className: "container", children: [
-          /* @__PURE__ */ jsxs("div", { className: "portfolio-slider", children: [
-            /* @__PURE__ */ jsx("div", { className: "slider-container", children: sliderImages.map((item, index) => /* @__PURE__ */ jsxs("div", { className: "slide", children: [
-              /* @__PURE__ */ jsx(
+    /* @__PURE__ */ jsx(
+      "section",
+      {
+        style: {
+          backgroundImage: "url(images/00.webp)",
+          backgroundColor: "rgb(255, 255, 255)"
+        },
+        className: "sub-header position-relative",
+        children: /* @__PURE__ */ jsx("div", { className: "container", children: /* @__PURE__ */ jsxs("div", { className: "page-info ", children: [
+          /* @__PURE__ */ jsx("h2", { className: "heading-2", style: { color: "white", textAlign: "center" }, children: "Our Portfolio" }),
+          /* @__PURE__ */ jsxs("h6", { className: "heading-6", children: [
+            /* @__PURE__ */ jsx("a", { href: "/", children: "Home" }),
+            " / ",
+            /* @__PURE__ */ jsx("a", { href: "#", children: "Portfolio" })
+          ] })
+        ] }) })
+      }
+    ),
+    /* @__PURE__ */ jsxs("section", { id: "projects", children: [
+      /* @__PURE__ */ jsxs("div", { className: "container", children: [
+        /* @__PURE__ */ jsxs("div", { className: "simple-slider-ram", children: [
+          /* @__PURE__ */ jsx("div", { className: "simple-slides-wrapper-ram", children: sliderImages.map((item, index) => /* @__PURE__ */ jsx(
+            "div",
+            {
+              className: `simple-single-slide-ram ${index === currentSlide ? "active-slide-ram" : ""}`,
+              children: /* @__PURE__ */ jsx(
                 "img",
                 {
                   src: item.image,
                   alt: item.title,
-                  className: "slide-image"
-                }
-              ),
-              /* @__PURE__ */ jsx("div", { className: "slide-overlay", children: /* @__PURE__ */ jsxs("div", { className: "slide-content", children: [
-                /* @__PURE__ */ jsx("h3", { className: "slide-title", children: item.title }),
-                /* @__PURE__ */ jsx("p", { className: "slide-type", children: item.type })
-              ] }) })
-            ] }, item.id)) }),
-            /* @__PURE__ */ jsx("button", { className: "slider-nav prev", onClick: prevSlide, children: "‹" }),
-            /* @__PURE__ */ jsx("button", { className: "slider-nav next", onClick: nextSlide, children: "›" }),
-            /* @__PURE__ */ jsx("div", { className: "slider-dots", children: sliderImages.map((_, index) => /* @__PURE__ */ jsx(
-              "span",
-              {
-                className: `dot ${index === currentSlide ? "active" : ""}`,
-                onClick: () => goToSlide(index)
-              },
-              index
-            )) }),
-            /* @__PURE__ */ jsx("div", { className: "slider-progress" })
-          ] }),
-          /* @__PURE__ */ jsx("div", { className: "portfolio-tabs d-flex  mb-50", style: { marginTop: "-70px" }, children: /* @__PURE__ */ jsx("div", { className: "tab-wrapper d-flex", children: categories.map((category) => /* @__PURE__ */ jsx(
-            "button",
-            {
-              className: `tab-btn ${activeTab === category ? "active" : ""}`,
-              onClick: () => {
-                setActiveTab(category);
-                setShowAll(false);
-              },
-              style: {
-                padding: "12px 24px",
-                margin: "5px 8px",
-                border: "none",
-                borderRadius: "25px",
-                backgroundColor: activeTab === category ? "#0011ffff" : "transparent",
-                color: activeTab === category ? "white" : "#333",
-                cursor: "pointer",
-                fontWeight: "500",
-                transition: "all 0.3s ease",
-                fontSize: "16px",
-                textTransform: "uppercase",
-                letterSpacing: "1px",
-                minWidth: "120px",
-                whiteSpace: "nowrap"
-              },
-              onMouseEnter: (e) => {
-                if (activeTab !== category) {
-                  e.target.style.backgroundColor = "#f8f9fa";
-                  e.target.style.color = "#0011ffff";
-                }
-              },
-              onMouseLeave: (e) => {
-                if (activeTab !== category) {
-                  e.target.style.backgroundColor = "transparent";
-                  e.target.style.color = "#333";
-                }
-              },
-              children: category
-            },
-            category
-          )) }) })
-        ] }),
-        /* @__PURE__ */ jsx("section", { id: "latest-news", className: "home__latest--news", children: /* @__PURE__ */ jsxs("div", { className: "container", children: [
-          /* @__PURE__ */ jsx("div", { className: "row g-4", children: itemsToShow.map((item) => renderPortfolioCard(item)) }),
-          hasMoreItems && /* @__PURE__ */ jsx("div", { className: "d-flex justify-content-center mt-50", children: /* @__PURE__ */ jsx(
-            "button",
-            {
-              onClick: handleReadMore,
-              style: {
-                padding: "15px 30px",
-                border: "2px solid #0011ffff",
-                borderRadius: "30px",
-                backgroundColor: showAll ? "#0011ffff" : "transparent",
-                color: showAll ? "white" : "#0011ffff",
-                cursor: "pointer",
-                fontWeight: "600",
-                fontSize: "16px",
-                textTransform: "uppercase",
-                letterSpacing: "1px",
-                transition: "all 0.3s ease",
-                minWidth: "180px"
-              },
-              onMouseEnter: (e) => {
-                if (!showAll) {
-                  e.target.style.backgroundColor = "#0011ffff";
-                  e.target.style.color = "white";
-                }
-              },
-              onMouseLeave: (e) => {
-                if (!showAll) {
-                  e.target.style.backgroundColor = "transparent";
-                  e.target.style.color = "#0011ffff";
-                }
-              },
-              children: showAll ? "Show Less" : "Read More"
-            }
-          ) })
-        ] }) }),
-        /* @__PURE__ */ jsx("div", { className: "space100" })
-      ] }),
-      /* @__PURE__ */ jsxs(
-        "section",
-        {
-          style: {
-            backgroundImage: "url(images/Newimage/digital-marketing-banner1.webp)",
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover"
-          },
-          id: "newsletter",
-          className: "portfolio__newsletter",
-          children: [
-            /* @__PURE__ */ jsx("style", { children: `
-    .popup-box {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #fff;
-      color: #333;
-      padding: 20px 30px;
-      border-radius: 8px;
-      font-size: 18px;
-      font-weight: 500;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-      z-index: 9999;
-      animation: fadeInOut 2.5s ease forwards;
-    }
-    @keyframes fadeInOut {
-      0% { opacity: 0; transform: translate(-50%, -60%); }
-      10% { opacity: 1; transform: translate(-50%, -50%); }
-      90% { opacity: 1; transform: translate(-50%, -50%); }
-      100% { opacity: 0; transform: translate(-50%, -40%); }
-    }
-  ` }),
-            /* @__PURE__ */ jsxs("div", { className: "container newsletter-Wrapper", children: [
-              /* @__PURE__ */ jsxs("div", { className: "text", children: [
-                /* @__PURE__ */ jsx("h3", { children: "Join to Our Team For More Info" }),
-                /* @__PURE__ */ jsx("p", { children: "Excerpt Technologies PVT LTD" })
-              ] }),
-              /* @__PURE__ */ jsx(
-                "form",
-                {
-                  className: "form",
-                  onSubmit: (e) => {
-                    e.preventDefault();
-                    const popup = document.createElement("div");
-                    popup.className = "popup-box";
-                    popup.innerText = "✅ Thank you for submitting!";
-                    document.body.appendChild(popup);
-                    setTimeout(() => {
-                      popup.remove();
-                    }, 2500);
-                  },
-                  children: /* @__PURE__ */ jsxs("div", { className: "email-wrapper", children: [
-                    /* @__PURE__ */ jsx(
-                      "input",
-                      {
-                        type: "email",
-                        name: "email",
-                        id: "email",
-                        placeholder: "Enter your email",
-                        required: true
-                      }
-                    ),
-                    /* @__PURE__ */ jsx("button", { type: "submit", className: "subscribe-btn", children: /* @__PURE__ */ jsx("span", { children: "Reach Us" }) })
-                  ] })
+                  className: "simple-slide-img-ram"
                 }
               )
-            ] })
-          ]
-        }
-      ),
-      /* @__PURE__ */ jsx("div", { className: "space100" })
-    ] })
+            },
+            index
+          )) }),
+          /* @__PURE__ */ jsx("button", { className: "simple-nav-btn-ram left-ram", onClick: prevSlide, children: "‹" }),
+          /* @__PURE__ */ jsx("button", { className: "simple-nav-btn-ram right-ram", onClick: nextSlide, children: "›" }),
+          /* @__PURE__ */ jsx("div", { className: "simple-dots-wrapper-ram", children: sliderImages.map((_, index) => /* @__PURE__ */ jsx(
+            "span",
+            {
+              className: `simple-dot-ram ${index === currentSlide ? "dot-active-ram" : ""}`,
+              onClick: () => goToSlide(index)
+            },
+            index
+          )) })
+        ] }),
+        /* @__PURE__ */ jsx("div", { className: "portfolio-tabs-ram d-flex", children: /* @__PURE__ */ jsx("div", { className: "tab-wrapper-ram d-flex", children: categories.map((category) => /* @__PURE__ */ jsx(
+          "button",
+          {
+            className: `tab-btn-ram ${activeTab === category ? "active" : ""}`,
+            onClick: () => {
+              setActiveTab(category);
+              setShowAll(false);
+            },
+            style: {
+              padding: "12px 24px",
+              margin: "5px 8px",
+              border: "none",
+              borderRadius: "25px",
+              backgroundColor: activeTab === category ? "#0011ffff" : "transparent",
+              color: activeTab === category ? "white" : "#333",
+              cursor: "pointer",
+              fontWeight: "500",
+              transition: "all 0.3s ease",
+              fontSize: "16px",
+              textTransform: "uppercase",
+              letterSpacing: "1px",
+              minWidth: "120px",
+              whiteSpace: "nowrap"
+            },
+            onMouseEnter: (e) => {
+              if (activeTab !== category) {
+                e.target.style.backgroundColor = "#f8f9fa";
+                e.target.style.color = "#0011ffff";
+              }
+            },
+            onMouseLeave: (e) => {
+              if (activeTab !== category) {
+                e.target.style.backgroundColor = "transparent";
+                e.target.style.color = "#333";
+              }
+            },
+            children: category
+          },
+          category
+        )) }) })
+      ] }),
+      /* @__PURE__ */ jsx("section", { id: "latest-news", className: "home__latest--news", children: /* @__PURE__ */ jsxs("div", { className: "container", children: [
+        /* @__PURE__ */ jsx("div", { className: "row", children: itemsToShow.map((item) => renderPortfolioCard(item)) }),
+        hasMoreItems && /* @__PURE__ */ jsx("div", { className: "d-flex justify-content-center mt-50", children: /* @__PURE__ */ jsx(
+          "button",
+          {
+            onClick: handleReadMore,
+            style: {
+              padding: "15px 30px",
+              border: "2px solid #0011ffff",
+              borderRadius: "30px",
+              backgroundColor: showAll ? "#0011ffff" : "transparent",
+              color: showAll ? "white" : "#0011ffff",
+              cursor: "pointer",
+              fontWeight: "600",
+              fontSize: "16px",
+              textTransform: "uppercase",
+              letterSpacing: "1px",
+              transition: "all 0.3s ease",
+              minWidth: "180px"
+            },
+            onMouseEnter: (e) => {
+              if (!showAll) {
+                e.target.style.backgroundColor = "#0011ffff";
+                e.target.style.color = "white";
+              }
+            },
+            onMouseLeave: (e) => {
+              if (!showAll) {
+                e.target.style.backgroundColor = "transparent";
+                e.target.style.color = "#0011ffff";
+              }
+            },
+            children: showAll ? "Show Less" : "Read More"
+          }
+        ) })
+      ] }) }),
+      /* @__PURE__ */ jsx("div", { className: "space50" })
+    ] }),
+    /* @__PURE__ */ jsx(
+      "section",
+      {
+        style: {
+          backgroundImage: "url(images/Newimage/digital-marketing-banner1.webp)",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover"
+        },
+        id: "newsletter",
+        className: "portfolio__newsletter",
+        children: /* @__PURE__ */ jsx("div", { className: "container newsletter-Wrapper", children: /* @__PURE__ */ jsxs("div", { className: "text", children: [
+          /* @__PURE__ */ jsx("h3", { children: "Join to Our Team For More Info" }),
+          /* @__PURE__ */ jsx("p", { children: "Excerpt Technologies PVT LTD" })
+        ] }) })
+      }
+    ),
+    /* @__PURE__ */ jsx("div", { className: "space50" })
   ] });
 };
 const Webdesign = () => {
@@ -24273,7 +24032,7 @@ const Mobileapp = () => {
     ),
     /* @__PURE__ */ jsx("section", { id: "service-details", class: "service-details", children: /* @__PURE__ */ jsx("div", { class: "container", children: /* @__PURE__ */ jsxs("div", { class: "row g-4", children: [
       /* @__PURE__ */ jsxs("div", { class: "col-md-8 mb-40", children: [
-        /* @__PURE__ */ jsx("div", { class: "img-wrapper mb-25", children: /* @__PURE__ */ jsx("img", { src: "images/mb2.webp", class: "img-fluid", alt: "" }) }),
+        /* @__PURE__ */ jsx("div", { class: "img-wrapper mb-25", children: /* @__PURE__ */ jsx("img", { src: "images/mb2.png", class: "img-fluid", alt: "" }) }),
         /* @__PURE__ */ jsx("h4", { class: "heading-4 mb-25", children: "Mobile Application Development" }),
         /* @__PURE__ */ jsx("div", { class: "paragraph mb-40", children: "We excel in crafting custom mobile apps for iOS and Android, prioritizing performance, usability, and innovation. Our experienced team ensures your app meets business needs while delivering exceptional user experiences, from concept to deployment." }),
         /* @__PURE__ */ jsxs("div", { class: "row g-4 mb-25", children: [
@@ -24827,7 +24586,7 @@ const Uiux$1 = () => {
     ),
     /* @__PURE__ */ jsx("section", { id: "service-details", class: "service-details", children: /* @__PURE__ */ jsx("div", { class: "container", children: /* @__PURE__ */ jsxs("div", { class: "row g-4", children: [
       /* @__PURE__ */ jsxs("div", { class: "col-md-8 mb-40", children: [
-        /* @__PURE__ */ jsx("div", { class: "img-wrapper mb-25", children: /* @__PURE__ */ jsx("img", { src: "images/ui1.webp", class: "img-fluid", alt: "" }) }),
+        /* @__PURE__ */ jsx("div", { class: "img-wrapper mb-25", children: /* @__PURE__ */ jsx("img", { src: "images/w01.webp", class: "img-fluid", alt: "" }) }),
         /* @__PURE__ */ jsx("h4", { class: "heading-4 mb-25", children: "STATIC WEBSITE" }),
         /* @__PURE__ */ jsx("div", { class: "paragraph mb-40", children: "A Static Website is a simple, fast-loading website with fixed content that doesn’t change dynamically. It’s ideal for businesses or individuals who need an online presence to showcase information, products, or services without frequent updates. Static websites are cost-effective, secure, and easy to maintain, providing a professional digital footprint." }),
         /* @__PURE__ */ jsxs("div", { class: "row g-4 mb-25", children: [
@@ -25235,7 +24994,7 @@ const LmsSystems = () => {
     ),
     /* @__PURE__ */ jsx("section", { id: "service-details", className: "service-details", children: /* @__PURE__ */ jsx("div", { className: "container", children: /* @__PURE__ */ jsxs("div", { className: "row g-4", children: [
       /* @__PURE__ */ jsxs("div", { className: "col-md-8 mb-40", children: [
-        /* @__PURE__ */ jsx("div", { className: "img-wrapper mb-25", children: /* @__PURE__ */ jsx("img", { src: "service/lms11.webp", className: "img-fluid", alt: "" }) }),
+        /* @__PURE__ */ jsx("div", { className: "img-wrapper mb-25", children: /* @__PURE__ */ jsx("img", { src: "service/lms11.png", className: "img-fluid", alt: "" }) }),
         /* @__PURE__ */ jsx("h4", { className: "heading-4 mb-25", children: "Learning Management System (LMS)" }),
         /* @__PURE__ */ jsx("div", { className: "paragraph mb-40", children: "A Learning Management System (LMS) is a digital platform that delivers, tracks, and manages educational or training programs online. It allows organizations to create courses, monitor learner progress, and assess performance efficiently. LMS systems enhance learning experiences, improve knowledge retention, and streamline training processes for employees, students, or customers." }),
         /* @__PURE__ */ jsxs("div", { className: "row g-4 mb-25", children: [
@@ -25335,11 +25094,11 @@ const DynamicWebsites = () => {
       }
     ),
     /* @__PURE__ */ jsx("section", { id: "service-details", className: "service-details", children: /* @__PURE__ */ jsx("div", { className: "container", children: /* @__PURE__ */ jsxs("div", { className: "row g-4", children: [
-      /* @__PURE__ */ jsxs("div", { className: "col-md-8 mb-40", children: [
+      /* @__PURE__ */ jsxs("div", { className: "col-md-8 mb-10", children: [
         /* @__PURE__ */ jsx("div", { className: "img-wrapper mb-25", children: /* @__PURE__ */ jsx(
           "img",
           {
-            src: "portfolio/triicons.webp",
+            src: "images/Dynamic-Website.png",
             className: "img-fluid",
             alt: "Dynamic Websites"
           }
@@ -25350,7 +25109,7 @@ const DynamicWebsites = () => {
           /* @__PURE__ */ jsx("div", { className: "col-md-6", children: /* @__PURE__ */ jsx("div", { className: "img-wrapper", children: /* @__PURE__ */ jsx(
             "img",
             {
-              src: "portfolio/car.webp",
+              src: "portfolio/car.png",
               className: "img-fluid sub",
               alt: "Dynamic Example",
               style: { height: "300px" }
@@ -25774,9 +25533,8 @@ function App() {
     setIsAdmin(false);
     sessionStorage.removeItem("isAdminLoggedIn");
   };
-  return /* @__PURE__ */ jsxs("div", { children: [
+  return /* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsxs(BrowserRouter, { children: [
     /* @__PURE__ */ jsx(ScrollToTop, {}),
-    /* @__PURE__ */ jsx(Topheader, { isLoggedIn, onLogout: handleLogout }),
     /* @__PURE__ */ jsx(Navbar, { isLoggedIn, isAdmin, onLogout: handleLogout }),
     /* @__PURE__ */ jsxs(HelmetExport, { children: [
       /* @__PURE__ */ jsx("title", { children: "EXCERPT TECHNOLOGIES PRIVATE LIMITED - Software As A Service Provider | Best Software Solution Provider" }),
@@ -25826,7 +25584,7 @@ function App() {
     /* @__PURE__ */ jsx(App$1, {}),
     /* @__PURE__ */ jsx(ScrollToTopButton, {}),
     /* @__PURE__ */ jsx(Footer1, {})
-  ] });
+  ] }) });
 }
 function render(url, manifest) {
   const html = renderToString(
