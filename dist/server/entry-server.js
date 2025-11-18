@@ -3,7 +3,7 @@ import * as React from "react";
 import React__default, { useState, useEffect, useRef, useMemo, useCallback, lazy, Suspense } from "react";
 import { renderToString } from "react-dom/server";
 import { StaticRouter } from "react-router";
-import { useNavigate, Link, NavLink, useLocation, Outlet, BrowserRouter, Routes, Route } from "react-router-dom";
+import { useNavigate, Link, NavLink, useLocation, Outlet, Routes, Route } from "react-router-dom";
 import PropTypes from "prop-types";
 import withSideEffect from "react-side-effect";
 import isEqual from "react-fast-compare";
@@ -25533,7 +25533,7 @@ function App() {
     setIsAdmin(false);
     sessionStorage.removeItem("isAdminLoggedIn");
   };
-  return /* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsxs(BrowserRouter, { children: [
+  return /* @__PURE__ */ jsxs("div", { children: [
     /* @__PURE__ */ jsx(ScrollToTop, {}),
     /* @__PURE__ */ jsx(Navbar, { isLoggedIn, isAdmin, onLogout: handleLogout }),
     /* @__PURE__ */ jsxs(HelmetExport, { children: [
@@ -25584,7 +25584,7 @@ function App() {
     /* @__PURE__ */ jsx(App$1, {}),
     /* @__PURE__ */ jsx(ScrollToTopButton, {}),
     /* @__PURE__ */ jsx(Footer1, {})
-  ] }) });
+  ] });
 }
 function render(url, manifest) {
   const html = renderToString(
