@@ -49,15 +49,15 @@
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
 
   <!-- Your custom CSS -->
-  <link rel="stylesheet" href="./css/vendor/bootstrap.min.css" />
-  <link rel="stylesheet" href="./css/common.css" />
-  <link rel="stylesheet" href="./css/style.css" />
-  <link rel="stylesheet" href="./css/vendor/slick-theme.css" />
-  <link rel="stylesheet" href="./css/vendor/slick.css" />
-  <link rel="stylesheet" href="assets/css1/swaragh-style.css" />
+  <link rel="stylesheet"crossorigin href="./css/vendor/bootstrap.min.css" />
+  <link rel="stylesheet" crossorigin href="./css/common.css" />
+  <link rel="stylesheet"  crossorigin href="./css/style.css" />
+  <!-- <link rel="stylesheet" crossorigin href="./css/vendor/slick-theme.css" />
+  <link rel="stylesheet" crossorigin href="./css/vendor/slick.css" />
+  <link rel="stylesheet" crossorigin href="assets/css1/swaragh-style.css" /> -->
   <!-- <link rel="stylesheet" href="assets/css1/responsive.css" /> -->
-  <script type="module" crossorigin src="/assets/main-Cg7otOmM.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-lxXVA8Js.css">
+  <script type="module" crossorigin src="/assets/main-Bm-18KXU.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-DiBH8xO_.css">
 </head>
 
 <body>
@@ -81,78 +81,7 @@
     integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous" defer>
     </script>
 
-  <!-- Your main app script -->
-  <script type="module" src="/src/main.jsx"></script>
 
-  <!-- PDF generation scripts - Consider lazy loading these -->
-  <script src="jspdf.umd.min.js" defer></script>
-  <script src="Roboto-normal.js" defer></script>
-
-  <!-- OPTIMIZED ANALYTICS: Load all tracking after page interaction -->
-  <script>
-    // Consolidated analytics loader
-    (function () {
-      var analyticsLoaded = false;
-
-      function loadAnalytics() {
-        if (analyticsLoaded) return;
-        analyticsLoaded = true;
-
-        // Initialize dataLayer
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-
-        // Load GTM
-        (function (w, d, s, l, i) {
-          w[l] = w[l] || [];
-          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-          var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
-          j.async = true;
-          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-          f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-NLQC3VXP');
-
-        // Load Google Analytics
-        var ga1 = document.createElement('script');
-        ga1.async = true;
-        ga1.src = 'https://www.googletagmanager.com/gtag/js?id=G-46QBBRE13F';
-        document.head.appendChild(ga1);
-
-        var ga2 = document.createElement('script');
-        ga2.async = true;
-        ga2.src = 'https://www.googletagmanager.com/gtag/js?id=AW-16454133494';
-        document.head.appendChild(ga2);
-
-        var ga3 = document.createElement('script');
-        ga3.async = true;
-        ga3.src = 'https://www.googletagmanager.com/gtag/js?id=AW-11563767925';
-        document.head.appendChild(ga3);
-
-        // Configure after scripts load
-        ga1.onload = function () {
-          gtag('js', new Date());
-          gtag('config', 'G-46QBBRE13F');
-          gtag('config', 'AW-16454133494');
-          gtag('config', 'AW-11563767925');
-
-          // Conversion event
-          gtag('event', 'conversion', {
-            'send_to': 'AW-16454133494/wlHbCLOb2ZQZEPbN-KU9'
-          });
-        };
-      }
-
-      // Load on first user interaction OR after 3 seconds
-      var events = ['mousedown', 'touchstart', 'scroll', 'keydown'];
-      events.forEach(function (event) {
-        document.addEventListener(event, loadAnalytics, { once: true, passive: true });
-      });
-
-      // Fallback: load after 3 seconds if no interaction
-      setTimeout(loadAnalytics, 3000);
-    })();
-  </script>
 </body>
 
 </html>
