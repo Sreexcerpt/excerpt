@@ -5,8 +5,8 @@ import fontkit from "@pdf-lib/fontkit";
 import QRCode from "qrcode";
 import PropTypes from "prop-types";
 import axios from "axios";
+import { D as Dashboard } from "../entry-server.js";
 import "react-toastify";
-import "../entry-server.js";
 import "react-dom/server";
 import "react-router";
 import "react-router-dom";
@@ -431,7 +431,7 @@ We wish her great success in all of her future endeavors.`;
         const wrapAndDrawText = (text, x, y, maxWidth, fontSize, font, lineSpacing) => {
           const words = text.split(" ");
           let line = "";
-          let currentY = y;
+          let currentY = y + 5;
           for (let i = 0; i < words.length; i++) {
             const wordToAdd = line === "" ? words[i] : " " + words[i];
             const testLine = line + wordToAdd;
@@ -451,7 +451,7 @@ We wish her great success in all of her future endeavors.`;
         };
         if (additionalContent !== "") {
           const contentParagraphs = additionalContent.split("\n");
-          let currentY = config.content.y - 20;
+          let currentY = config.content.y - 10;
           const lineSpacing = config.content.lineSpacing || 20;
           const paragraphSpacing = 10;
           for (const paragraph of contentParagraphs) {
@@ -597,7 +597,7 @@ function Certificate$1() {
   }, []);
   const fetchData = async () => {
     try {
-      const response = await axios.get("/api/students");
+      const response = await axios.get("http://localhost:8080/api/students");
       setStudents(response.data);
       console.log("Fetched students:", response.data);
       const uniqueCollegeNames = [...new Set(response.data.map((student) => student.college_name))];
@@ -696,8 +696,8 @@ function Certificate$1() {
     }
     return pages;
   };
-  return /* @__PURE__ */ jsxs(Fragment, { children: [
-    /* @__PURE__ */ jsx("section", { className: "sub-header position-relative", style: { height: "10vh" }, children: /* @__PURE__ */ jsxs("div", { className: "container d-flex justify-content-between align-items-center", children: [
+  return /* @__PURE__ */ jsxs("div", { className: "col-9", children: [
+    /* @__PURE__ */ jsx("section", { className: "sub-header position-relative ", style: { height: "10vh" }, children: /* @__PURE__ */ jsxs("div", { className: "container d-flex justify-content-between align-items-center", children: [
       /* @__PURE__ */ jsx("h2", { className: "heading-2 w-20", children: "Certificate" }),
       /* @__PURE__ */ jsx("h6", { className: "heading-6 w-80 text-end", children: /* @__PURE__ */ jsx("a", { href: "/dashboard", children: "dashboard" }) })
     ] }) }),
@@ -831,7 +831,7 @@ function Certificate$1() {
 const Certificate = () => {
   return /* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsxs("div", { className: "row", children: [
     /* @__PURE__ */ jsx(Dashboard, {}),
-    /* @__PURE__ */ jsx("div", { className: "col-10", children: /* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsx(Certificate$1, {}) }) })
+    /* @__PURE__ */ jsx("div", { className: "col-8", children: /* @__PURE__ */ jsx("div", { children: /* @__PURE__ */ jsx(Certificate$1, {}) }) })
   ] }) });
 };
 export {

@@ -4,15 +4,12 @@
     "name": "verdanbold"
   },
   "src/Components/Carriers/Carrers.jsx": {
-    "file": "assets/Carrers-BBcQKMP1.js",
+    "file": "assets/Carrers-g_QEseCY.js",
     "name": "Carrers",
     "src": "src/Components/Carriers/Carrers.jsx",
     "isDynamicEntry": true,
     "imports": [
       "src/entry-server.jsx"
-    ],
-    "css": [
-      "assets/Carrers-B3wvgmF7.css"
     ]
   },
   "src/Components/indvisit.jsx": {
@@ -25,32 +22,26 @@
     ]
   },
   "src/Pages/Certificate.jsx": {
-    "file": "assets/Certificate-DuqDvgNM.js",
+    "file": "assets/Certificate-Cc_u4WMm.js",
     "name": "Certificate",
     "src": "src/Pages/Certificate.jsx",
     "isDynamicEntry": true,
     "imports": [
       "src/entry-server.jsx"
-    ],
-    "css": [
-      "assets/Certificate-DJ9okruq.css"
     ]
   },
   "src/Pages/Invoice-Quotation/Invoice.jsx": {
-    "file": "assets/Invoice-D0lZE6ei.js",
+    "file": "assets/Invoice-DMe0XJFe.js",
     "name": "Invoice",
     "src": "src/Pages/Invoice-Quotation/Invoice.jsx",
     "isDynamicEntry": true,
     "imports": [
       "src/entry-server.jsx",
       "_verdanbold-B2YmcHcO.js"
-    ],
-    "css": [
-      "assets/Invoice-D72G89we.css"
     ]
   },
   "src/Pages/Invoice-Quotation/InvoiceDisplay.jsx": {
-    "file": "assets/InvoiceDisplay-CyIBm8Dp.js",
+    "file": "assets/InvoiceDisplay-DZbGxCGe.js",
     "name": "InvoiceDisplay",
     "src": "src/Pages/Invoice-Quotation/InvoiceDisplay.jsx",
     "isDynamicEntry": true,
@@ -59,7 +50,7 @@
       "src/entry-server.jsx"
     ],
     "css": [
-      "assets/InvoiceDisplay-BCtqbfnD.css"
+      "assets/InvoiceDisplay-C11chwFa.css"
     ]
   },
   "src/Pages/Invoice-Quotation/Quotation.jsx": {
@@ -73,7 +64,7 @@
     ]
   },
   "src/Pages/Reg-Login/Login.jsx": {
-    "file": "assets/Login-CwN6OmwS.js",
+    "file": "assets/Login-BoEdESer.js",
     "name": "Login",
     "src": "src/Pages/Reg-Login/Login.jsx",
     "isDynamicEntry": true,
@@ -106,7 +97,7 @@
       "src/Components/indvisit.jsx"
     ],
     "css": [
-      "assets/entry-server-DiBH8xO_.css"
+      "assets/entry-server-DB0Zq_Dx.css"
     ],
     "assets": [
       "assets/NotoSansBold-CTHeVQvw.ttf",

@@ -1562,40 +1562,40 @@ const Footer1 = () => {
     "section",
     {
       style: { backgroundImage: `url(images/footer/bg.webp), linear-gradient(0deg, #03041c, #03041c)` },
-      id: "footer ",
-      children: /* @__PURE__ */ jsx("div", { class: "footer-body ", children: /* @__PURE__ */ jsxs("div", { class: "container responsive_ele", children: [
-        /* @__PURE__ */ jsxs("div", { class: "row g-4 ", children: [
-          /* @__PURE__ */ jsx("div", { class: "col-md-6 col-12 col-xl-4 ", children: /* @__PURE__ */ jsxs("div", { class: "about-company ", style: { marginTop: "5px", height: "fit-content" }, children: [
-            /* @__PURE__ */ jsx("div", { class: "logo-wrapper ", style: { height: "max-content" }, children: /* @__PURE__ */ jsx("a", { href: "/", style: { height: "max-content" }, children: /* @__PURE__ */ jsx("img", { src: "/image/excerptwww.png", alt: "", height: 100, width: 600, style: { marginTop: "10px", marginBottom: "20px", zIndex: 1 } }) }) }),
-            /* @__PURE__ */ jsxs("div", { class: "content ", children: [
-              /* @__PURE__ */ jsx("h2", { class: "heading-3 " }),
-              /* @__PURE__ */ jsxs("div", { class: "paragraph ", children: [
-                /* @__PURE__ */ jsx("b", { style: { color: "black" }, children: "  Excerpt Technologies Private Limited" }),
+      id: "footer",
+      children: /* @__PURE__ */ jsx("div", { className: "footer-body", children: /* @__PURE__ */ jsxs("div", { className: "container responsive_ele", children: [
+        /* @__PURE__ */ jsxs("div", { className: "row g-4", children: [
+          /* @__PURE__ */ jsx("div", { className: "col-md-6 col-12 col-xl-4", children: /* @__PURE__ */ jsxs("div", { className: "about-company", style: { marginTop: "5px", height: "fit-content" }, children: [
+            /* @__PURE__ */ jsx("div", { className: "logo-wrapper", style: { height: "max-content" }, children: /* @__PURE__ */ jsx("a", { href: "/", style: { height: "max-content" }, children: /* @__PURE__ */ jsx("img", { src: "/image/excerptwww.png", alt: "", height: 100, width: 600, style: { marginTop: "10px", marginBottom: "20px", zIndex: 1 } }) }) }),
+            /* @__PURE__ */ jsxs("div", { className: "content", children: [
+              /* @__PURE__ */ jsx("h2", { className: "heading-3" }),
+              /* @__PURE__ */ jsxs("div", { className: "paragraph", children: [
+                /* @__PURE__ */ jsx("b", { style: { color: "black" }, children: "Excerpt Technologies Private Limited" }),
                 /* @__PURE__ */ jsx("br", {}),
                 " is a leading IT solutions and services company established with a specific mission of providing comprehensive, top of the line solutions."
               ] }),
-              /* @__PURE__ */ jsx("div", { class: "socials ", children: /* @__PURE__ */ jsxs("ul", { children: [
-                /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "https://www.facebook.com/Excerptech", target: "_blanck", children: /* @__PURE__ */ jsx("i", { class: "fa-brands fa-facebook-f " }) }) }),
-                /* @__PURE__ */ jsx("li", { class: " ", children: /* @__PURE__ */ jsx("a", { href: "https://www.linkedin.com/company/excerptech ", target: "_blanck", children: /* @__PURE__ */ jsx("i", { class: "fa-brands fa-linkedin-in " }) }) }),
-                /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "https://www.instagram.com/excerpt_technologies/?igsh=Z3k5OXozNDIzZHps ", target: "_blanck", children: /* @__PURE__ */ jsx("i", { class: "fa-brands fa-instagram " }) }) })
+              /* @__PURE__ */ jsx("div", { className: "socials", children: /* @__PURE__ */ jsxs("ul", { children: [
+                /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "https://www.facebook.com/Excerptech", target: "_blank", rel: "noopener noreferrer", children: /* @__PURE__ */ jsx("i", { className: "fa-brands fa-facebook-f" }) }) }),
+                /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "https://www.linkedin.com/company/excerptech", target: "_blank", rel: "noopener noreferrer", children: /* @__PURE__ */ jsx("i", { className: "fa-brands fa-linkedin-in" }) }) }),
+                /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "https://www.instagram.com/excerpt_technologies/?igsh=Z3k5OXozNDIzZHps", target: "_blank", rel: "noopener noreferrer", children: /* @__PURE__ */ jsx("i", { className: "fa-brands fa-instagram" }) }) })
               ] }) })
             ] })
           ] }) }),
-          /* @__PURE__ */ jsx("div", { class: "col-md-6 col-xl-4 ", children: /* @__PURE__ */ jsxs("div", { class: "wrapper responsive_ey", children: [
-            /* @__PURE__ */ jsx("h4", { class: "heading-4 ", children: "Quick Links" }),
+          /* @__PURE__ */ jsx("div", { className: "col-md-6 col-xl-4", children: /* @__PURE__ */ jsxs("div", { className: "wrapper responsive_ey", children: [
+            /* @__PURE__ */ jsx("h4", { className: "heading-4", children: "Quick Links" }),
             /* @__PURE__ */ jsxs("ul", { children: [
               /* @__PURE__ */ jsx("br", {}),
-              /* @__PURE__ */ jsx("li", { class: " ", children: /* @__PURE__ */ jsx("a", { href: "/Staticwebsite ", children: "Web Design & Development" }) }),
+              /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/Staticwebsite", children: "Web Design & Development" }) }),
               /* @__PURE__ */ jsx("br", {}),
               /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/erp", children: "ERP" }) }),
               /* @__PURE__ */ jsx("br", {}),
-              /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/lms", children: " LMS" }) }),
+              /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/lms", children: "LMS" }) }),
               /* @__PURE__ */ jsx("br", {}),
-              /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/ecommerce ", children: "Ecommerce Solutions" }) }),
+              /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/ecommerce", children: "Ecommerce Solutions" }) }),
               /* @__PURE__ */ jsx("br", {}),
               /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/CyberSecurity", children: "Cyber Security" }) }),
               /* @__PURE__ */ jsx("br", {}),
-              /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/DigitalMarketing ", children: "Digital Marketing" }) }),
+              /* @__PURE__ */ jsx("li", { children: /* @__PURE__ */ jsx("a", { href: "/DigitalMarketing", children: "Digital Marketing" }) }),
               /* @__PURE__ */ jsx("br", {})
             ] })
           ] }) }),
@@ -1653,13 +1653,13 @@ const Footer1 = () => {
             ] })
           ] }) })
         ] }),
-        /* @__PURE__ */ jsx("div", { class: "divider " }),
-        /* @__PURE__ */ jsx("div", { class: "footer-bottom ", children: /* @__PURE__ */ jsxs("div", { class: "d-flex justify-content-center justify-content-md-between align-items-center ", children: [
-          /* @__PURE__ */ jsxs("div", { class: "paragraph ", children: [
+        /* @__PURE__ */ jsx("div", { className: "divider" }),
+        /* @__PURE__ */ jsx("div", { className: "footer-bottom", children: /* @__PURE__ */ jsxs("div", { className: "d-flex justify-content-center justify-content-md-between align-items-center", children: [
+          /* @__PURE__ */ jsxs("div", { className: "paragraph", children: [
             /* @__PURE__ */ jsx("span", { style: { textAlign: "center" }, children: "© Excerpt Technologies 2025" }),
             /* @__PURE__ */ jsx("span", { style: { marginLeft: "5px" }, children: "All Rights Reserved." })
           ] }),
-          /* @__PURE__ */ jsx("div", { class: "infos ", children: /* @__PURE__ */ jsx("ul", { class: "d-none d-md-flex " }) })
+          /* @__PURE__ */ jsx("div", { className: "infos", children: /* @__PURE__ */ jsx("ul", { className: "d-none d-md-flex" }) })
         ] }) })
       ] }) })
     }
@@ -17842,7 +17842,7 @@ const Dashboard = () => {
   const [showStudentFormDiploma, setShowStudentFormDiploma] = useState(false);
   const [showStudentForm, setshowStudentForm] = useState(false);
   const [showinternshipCertificate, setshowinternshipCertificate] = useState(false);
-  return /* @__PURE__ */ jsx("div", { className: "col-xl-2", children: /* @__PURE__ */ jsxs("div", { className: "dashboard-layout", children: [
+  return /* @__PURE__ */ jsx("div", { className: "col-2", children: /* @__PURE__ */ jsxs("div", { className: "dashboard-layout", children: [
     /* @__PURE__ */ jsxs(HelmetExport, { children: [
       /* @__PURE__ */ jsx("title", { children: "Dashboard - EXCERPT TECHNOLOGIES PRIVATE LIMITED" }),
       /* @__PURE__ */ jsx(
@@ -17871,7 +17871,6 @@ const Dashboard = () => {
         /* @__PURE__ */ jsx("li", { className: "nav-item", style: { margin: "20px" }, children: /* @__PURE__ */ jsx("button", { className: "mdi mdi-palette menu-icon menu-title menu-arrow", children: /* @__PURE__ */ jsx(Link, { to: "/resume", style: { color: "white" }, children: "Resumes" }) }) }),
         /* @__PURE__ */ jsx("li", { className: "nav-item", style: { margin: "20px" }, children: /* @__PURE__ */ jsx("button", { className: "mdi mdi-palette menu-icon menu-title menu-arrow", children: /* @__PURE__ */ jsx(Link, { to: "/studentform", style: { color: "white" }, children: "Student Form" }) }) }),
         /* @__PURE__ */ jsx("li", { className: "nav-item", style: { margin: "20px" }, children: /* @__PURE__ */ jsx("button", { className: "mdi mdi-palette menu-icon menu-title menu-arrow", children: /* @__PURE__ */ jsx(Link, { to: "/studentcertificate", style: { color: "white" }, children: "Student Certificate" }) }) }),
-        /* @__PURE__ */ jsx("li", { className: "nav-item", style: { margin: "20px" }, children: /* @__PURE__ */ jsx("button", { className: "mdi mdi-palette menu-icon menu-title menu-arrow", children: /* @__PURE__ */ jsx(Link, { to: "/certificate", style: { color: "white" }, children: "Certificate" }) }) }),
         /* @__PURE__ */ jsx("li", { className: "nav-item", style: { margin: "20px" }, children: /* @__PURE__ */ jsx("button", { className: "mdi mdi-palette menu-icon menu-title menu-arrow", children: /* @__PURE__ */ jsx(Link, { to: "/internform", style: { color: "white" }, children: "Intern Registration Form" }) }) }),
         /* @__PURE__ */ jsx("li", { className: "nav-item", style: { margin: "20px" }, children: /* @__PURE__ */ jsx("button", { className: "mdi mdi-palette menu-icon menu-title menu-arrow", children: /* @__PURE__ */ jsx(Link, { to: "/indvisit", style: { color: "white" }, children: "Industrial Visit Certificate" }) }) })
       ] }) }),
@@ -18453,25 +18452,36 @@ function Studentcertificate({ students }) {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("/api/courseStudents");
-        setCourseStudents(response.data);
+        const response = await axios.get("http://localhost:8080/api/courseStudents");
+        let data = response && response.data ? response.data : [];
+        if (!Array.isArray(data)) {
+          if (Array.isArray(data.data)) {
+            data = data.data;
+          } else if (Array.isArray(response.data && response.data.students)) {
+            data = response.data.students;
+          } else {
+            console.warn("Unexpected /api/courseStudents response shape:", response.data);
+            data = [];
+          }
+        }
+        setCourseStudents(data);
         setLoading(false);
-        const uniqueCourses = [...new Set(response.data.map((student) => student.course))];
-        const uniqueYears = [...new Set(response.data.map((student) => student.yop))];
-        const uniqueColleges = [...new Set(response.data.map((student) => student.collegeName))];
+        const uniqueCourses = [...new Set(data.map((student) => student.course))];
+        const uniqueYears = [...new Set(data.map((student) => student.yop))];
+        const uniqueColleges = [...new Set(data.map((student) => student.collegeName))];
         setCourses(uniqueCourses);
         setYears(uniqueYears);
         setColleges(uniqueColleges);
       } catch (error) {
-        console.error("Error fetching data:", error.message);
+        console.error("Error fetching data:", error);
         setLoading(false);
       }
     }
     fetchData();
   }, []);
-  const filteredStudents = courseStudents.filter(
+  const filteredStudents = Array.isArray(courseStudents) ? courseStudents.filter(
     (student) => (selectedCourse ? student.course === selectedCourse : true) && (selectedYOP ? student.yop === selectedYOP : true) && (selectedCollege ? student.collegeName === selectedCollege : true)
-  );
+  ) : [];
   const handleCourseChange = (e) => {
     setSelectedCourse(e.target.value);
   };
@@ -25487,14 +25497,14 @@ const Uiux = () => {
     ] }) }) })
   ] });
 };
-const Carrers = lazy(() => import("./assets/Carrers-BBcQKMP1.js"));
-const Login = lazy(() => import("./assets/Login-CwN6OmwS.js"));
+const Carrers = lazy(() => import("./assets/Carrers-g_QEseCY.js"));
+const Login = lazy(() => import("./assets/Login-BoEdESer.js"));
 const Register = lazy(() => import("./assets/Register-CGDx3vKa.js"));
 lazy(() => Promise.resolve().then(() => Dashboard$1));
-const Invoice = lazy(() => import("./assets/Invoice-D0lZE6ei.js"));
+const Invoice = lazy(() => import("./assets/Invoice-DMe0XJFe.js"));
 const Quotation = lazy(() => import("./assets/Quotation-ZT6tkdrN.js"));
-const InvoiceDisplay = lazy(() => import("./assets/InvoiceDisplay-CyIBm8Dp.js"));
-const Certificate = lazy(() => import("./assets/Certificate-DuqDvgNM.js"));
+const InvoiceDisplay = lazy(() => import("./assets/InvoiceDisplay-DZbGxCGe.js"));
+const Certificate = lazy(() => import("./assets/Certificate-Cc_u4WMm.js"));
 const Indvisit = lazy(() => import("./assets/indvisit-CgCuwJGe.js"));
 const LoadingSpinner = () => /* @__PURE__ */ jsx(
   "div",

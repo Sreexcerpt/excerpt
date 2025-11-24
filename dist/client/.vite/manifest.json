@@ -1,22 +1,22 @@
 {
-  "_FileSaver.min-fCGYkKRh.js": {
-    "file": "assets/FileSaver.min-fCGYkKRh.js",
+  "_FileSaver.min-D8LYF-Gj.js": {
+    "file": "assets/FileSaver.min-D8LYF-Gj.js",
     "name": "FileSaver.min",
     "isDynamicEntry": true,
     "imports": [
       "index.html"
     ]
   },
-  "_jszip.min-CHlkvftT.js": {
-    "file": "assets/jszip.min-CHlkvftT.js",
+  "_jszip.min-5EtGETyi.js": {
+    "file": "assets/jszip.min-5EtGETyi.js",
     "name": "jszip.min",
     "isDynamicEntry": true,
     "imports": [
       "index.html"
     ]
   },
-  "_verdanbold-DcDasRdh.js": {
-    "file": "assets/verdanbold-DcDasRdh.js",
+  "_verdanbold-CB6x5GfT.js": {
+    "file": "assets/verdanbold-CB6x5GfT.js",
     "name": "verdanbold",
     "imports": [
       "index.html"
@@ -28,7 +28,7 @@
     ]
   },
   "index.html": {
-    "file": "assets/main-Bm-18KXU.js",
+    "file": "assets/main-B8fsKJff.js",
     "name": "main",
     "src": "index.html",
     "isEntry": true,
@@ -43,7 +43,7 @@
       "src/Components/indvisit.jsx"
     ],
     "css": [
-      "assets/main-DiBH8xO_.css"
+      "assets/main-DB0Zq_Dx.css"
     ],
     "assets": [
       "assets/NotoSansBold-CTHeVQvw.ttf",
@@ -52,13 +52,13 @@
     ]
   },
   "node_modules/canvg/lib/index.es.js": {
-    "file": "assets/index.es-DgOVu-e2.js",
+    "file": "assets/index.es-e95btVxr.js",
     "name": "index.es",
     "src": "node_modules/canvg/lib/index.es.js",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_verdanbold-DcDasRdh.js"
+      "_verdanbold-CB6x5GfT.js"
     ]
   },
   "node_modules/dompurify/dist/purify.es.mjs": {
@@ -86,19 +86,16 @@
     "src": "public/NotoSansBold.ttf"
   },
   "src/Components/Carriers/Carrers.jsx": {
-    "file": "assets/Carrers-CntUji5u.js",
+    "file": "assets/Carrers-Ccw0p1cC.js",
     "name": "Carrers",
     "src": "src/Components/Carriers/Carrers.jsx",
     "isDynamicEntry": true,
     "imports": [
       "index.html"
-    ],
-    "css": [
-      "assets/Carrers-B3wvgmF7.css"
     ]
   },
   "src/Components/indvisit.jsx": {
-    "file": "assets/indvisit-CpANI4RX.js",
+    "file": "assets/indvisit-CntbSqjL.js",
     "name": "indvisit",
     "src": "src/Components/indvisit.jsx",
     "isDynamicEntry": true,
@@ -106,11 +103,11 @@
       "index.html"
     ],
     "dynamicImports": [
-      "_jszip.min-CHlkvftT.js"
+      "_jszip.min-5EtGETyi.js"
     ]
   },
   "src/Pages/Certificate.jsx": {
-    "file": "assets/Certificate-DMA20bAc.js",
+    "file": "assets/Certificate-DgQR1oLO.js",
     "name": "Certificate",
     "src": "src/Pages/Certificate.jsx",
     "isDynamicEntry": true,
@@ -118,50 +115,44 @@
       "index.html"
     ],
     "dynamicImports": [
-      "_FileSaver.min-fCGYkKRh.js"
-    ],
-    "css": [
-      "assets/Certificate-DJ9okruq.css"
+      "_FileSaver.min-D8LYF-Gj.js"
     ]
   },
   "src/Pages/Invoice-Quotation/Invoice.jsx": {
-    "file": "assets/Invoice-Bl4KFovn.js",
+    "file": "assets/Invoice-DrVV-RyR.js",
     "name": "Invoice",
     "src": "src/Pages/Invoice-Quotation/Invoice.jsx",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_verdanbold-DcDasRdh.js"
-    ],
-    "css": [
-      "assets/Invoice-D72G89we.css"
+      "_verdanbold-CB6x5GfT.js"
     ]
   },
   "src/Pages/Invoice-Quotation/InvoiceDisplay.jsx": {
-    "file": "assets/InvoiceDisplay-CePOpmFM.js",
+    "file": "assets/InvoiceDisplay-DLh8IgoZ.js",
     "name": "InvoiceDisplay",
     "src": "src/Pages/Invoice-Quotation/InvoiceDisplay.jsx",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_verdanbold-DcDasRdh.js"
+      "_verdanbold-CB6x5GfT.js"
     ],
     "css": [
-      "assets/InvoiceDisplay-BCtqbfnD.css"
+      "assets/InvoiceDisplay-C11chwFa.css"
     ]
   },
   "src/Pages/Invoice-Quotation/Quotation.jsx": {
-    "file": "assets/Quotation-uVeqzJ1V.js",
+    "file": "assets/Quotation-C2NJiz0p.js",
     "name": "Quotation",
     "src": "src/Pages/Invoice-Quotation/Quotation.jsx",
     "isDynamicEntry": true,
     "imports": [
       "index.html",
-      "_verdanbold-DcDasRdh.js"
+      "_verdanbold-CB6x5GfT.js"
     ]
   },
   "src/Pages/Reg-Login/Login.jsx": {
-    "file": "assets/Login-BENsfWYe.js",
+    "file": "assets/Login-DgT7bryK.js",
     "name": "Login",
     "src": "src/Pages/Reg-Login/Login.jsx",
     "isDynamicEntry": true,
@@ -170,7 +161,7 @@
     ]
   },
   "src/Pages/Reg-Login/Register.jsx": {
-    "file": "assets/Register-DC8WB2Bc.js",
+    "file": "assets/Register-DTKcVGQO.js",
     "name": "Register",
     "src": "src/Pages/Reg-Login/Register.jsx",
     "isDynamicEntry": true,

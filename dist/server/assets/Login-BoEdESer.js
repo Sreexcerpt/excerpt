@@ -100,7 +100,7 @@ const Login = ({ onLogin }) => {
       if (isLoading) return;
       setIsLoading(true);
       try {
-        const response = await axios.post("/api/login", formData, {
+        const response = await axios.post("http://localhost:8080/api/login", formData, {
           timeout: 5e3
           // Add timeout to prevent hanging requests
         });
