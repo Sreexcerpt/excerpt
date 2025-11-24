@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node --watch index.js",
-    "deploy": "git add . && git commit -m \"deploy update\" || echo 'No changes to commit' && git push origin main && ssh -p 4443 cruvzadmin@103.160.153.115 \"cd /Testing/excerpt && git pull && pm2 restart excerpt-server || pm2 reload excerpt-server\""
+    "deploy":"git add . && git commit -m 'update' && git push origin main && ssh -p 4443 cruvzadmin@103.160.153.115 'cd /Testing/excerpt && git pull && pm2 restart 22'"
   },
   "author": "",
   "license": "ISC",
